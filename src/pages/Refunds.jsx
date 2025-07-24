@@ -10,33 +10,33 @@ const Refunds = () => {
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="text-center mb-8">
         <Title level={1} className="text-4xl font-bold text-gray-800 mb-4">
-          Refund Policy
+          Política de Reembolsos
         </Title>
         <Paragraph className="text-xl text-gray-600">
-          Understanding our refund process and policies
+          Entendiendo nuestro proceso y políticas de reembolso
         </Paragraph>
       </div>
 
       <Alert
-        message="Important Notice"
-        description="Refund policies may vary by event organizer. Always check the specific event's refund policy before purchasing."
+        message="Aviso Importante"
+        description="Las políticas de reembolso pueden variar según el organizador del evento. Siempre revisa la política de reembolso específica del evento antes de comprar."
         type="info"
         showIcon
         className="mb-8"
       />
 
       <Card className="mb-8">
-        <Title level={3} className="mb-6">General Refund Policy</Title>
+        <Title level={3} className="mb-6">Política General de Reembolsos</Title>
         
         <div className="space-y-6">
           <div className="flex items-start space-x-4">
             <ClockCircleOutlined className="text-2xl text-blue-500 mt-1" />
             <div>
-              <Title level={5}>Standard Refund Window</Title>
+              <Title level={5}>Ventana Estándar de Reembolso</Title>
               <Paragraph>
-                Most tickets can be refunded up to 48 hours before the event start time. 
-                Refunds requested within 48 hours of the event may not be processed unless 
-                the event is cancelled by the organizer.
+                La mayoría de los boletos pueden ser reembolsados hasta 48 horas antes del inicio del evento. 
+                Los reembolsos solicitados dentro de las 48 horas del evento pueden no ser procesados a menos 
+                que el evento sea cancelado por el organizador.
               </Paragraph>
             </div>
           </div>
@@ -44,10 +44,10 @@ const Refunds = () => {
           <div className="flex items-start space-x-4">
             <DollarCircleOutlined className="text-2xl text-green-500 mt-1" />
             <div>
-              <Title level={5}>Refund Amount</Title>
+              <Title level={5}>Monto del Reembolso</Title>
               <Paragraph>
-                Full refunds include the ticket price minus processing fees (typically $2-5 per ticket). 
-                Service fees are non-refundable unless the event is cancelled by the organizer.
+                Los reembolsos completos incluyen el precio del boleto menos las tarifas de procesamiento (típicamente $2-5 por boleto). 
+                Las tarifas de servicio no son reembolsables a menos que el evento sea cancelado por el organizador.
               </Paragraph>
             </div>
           </div>
@@ -55,11 +55,11 @@ const Refunds = () => {
           <div className="flex items-start space-x-4">
             <CheckCircleOutlined className="text-2xl text-purple-500 mt-1" />
             <div>
-              <Title level={5}>Processing Time</Title>
+              <Title level={5}>Tiempo de Procesamiento</Title>
               <Paragraph>
-                Approved refunds are processed within 5-7 business days. The refund will appear 
-                on your original payment method. Credit card refunds may take an additional 
-                1-2 billing cycles to appear on your statement.
+                Los reembolsos aprobados se procesan dentro de 5-7 días hábiles. El reembolso aparecerá 
+                en tu método de pago original. Los reembolsos con tarjeta de crédito pueden tomar 
+                1-2 ciclos de facturación adicionales para aparecer en tu estado de cuenta.
               </Paragraph>
             </div>
           </div>
@@ -67,87 +67,87 @@ const Refunds = () => {
       </Card>
 
       <Card className="mb-8">
-        <Title level={3} className="mb-6">How to Request a Refund</Title>
+        <Title level={3} className="mb-6">Cómo Solicitar un Reembolso</Title>
         
         <Steps direction="vertical" current={-1}>
           <Step
-            title="Check Refund Eligibility"
-            description="Verify that your event is eligible for refunds and within the refund window."
+            title="Verificar Elegibilidad para Reembolso"
+            description="Verifica que tu evento sea elegible para reembolsos y esté dentro de la ventana de reembolso."
           />
           <Step
-            title="Contact Support"
-            description="Email us at refunds@tickethub.com or call +1 (555) 123-4567 with your order number."
+            title="Contactar Soporte"
+            description="Envíanos un email a refunds@tickethub.com o llama al +1 (555) 123-4567 con tu número de orden."
           />
           <Step
-            title="Provide Information"
-            description="Include your order number, event details, and reason for the refund request."
+            title="Proporcionar Información"
+            description="Incluye tu número de orden, detalles del evento y la razón de la solicitud de reembolso."
           />
           <Step
-            title="Wait for Confirmation"
-            description="We'll review your request and send confirmation within 24 hours."
+            title="Esperar Confirmación"
+            description="Revisaremos tu solicitud y enviaremos confirmación dentro de 24 horas."
           />
           <Step
-            title="Receive Refund"
-            description="Approved refunds are processed within 5-7 business days."
+            title="Recibir Reembolso"
+            description="Los reembolsos aprobados se procesan dentro de 5-7 días hábiles."
           />
         </Steps>
       </Card>
 
       <Card className="mb-8">
-        <Title level={3} className="mb-4">Special Circumstances</Title>
+        <Title level={3} className="mb-4">Circunstancias Especiales</Title>
         
         <div className="space-y-4">
           <div>
-            <Title level={5}>Event Cancellation</Title>
+            <Title level={5}>Cancelación del Evento</Title>
             <Paragraph>
-              If an event is cancelled by the organizer, all ticket holders receive automatic 
-              full refunds including all fees. No action is required from you.
+              Si un evento es cancelado por el organizador, todos los portadores de boletos reciben 
+              reembolsos completos automáticos incluyendo todas las tarifas. No se requiere ninguna acción de tu parte.
             </Paragraph>
           </div>
 
           <div>
-            <Title level={5}>Event Postponement</Title>
+            <Title level={5}>Aplazamiento del Evento</Title>
             <Paragraph>
-              If an event is postponed, your tickets remain valid for the new date. If you 
-              cannot attend the new date, you may request a full refund within 30 days of 
-              the postponement announcement.
+              Si un evento es aplazado, tus boletos siguen siendo válidos para la nueva fecha. Si no 
+              puedes asistir en la nueva fecha, puedes solicitar un reembolso completo dentro de 30 días del 
+              anuncio del aplazamiento.
             </Paragraph>
           </div>
 
           <div>
-            <Title level={5}>Venue Changes</Title>
+            <Title level={5}>Cambios de Lugar</Title>
             <Paragraph>
-              If an event venue is changed, you may request a refund if the new venue is 
-              significantly different or inconvenient. Refund requests must be made within 
-              14 days of the venue change notification.
+              Si el lugar de un evento es cambiado, puedes solicitar un reembolso si el nuevo lugar es 
+              significativamente diferente o inconveniente. Las solicitudes de reembolso deben hacerse dentro de 
+              14 días de la notificación del cambio de lugar.
             </Paragraph>
           </div>
         </div>
       </Card>
 
       <Card className="bg-red-50 border-red-200">
-        <Title level={4} className="text-red-800 mb-3">Non-Refundable Items</Title>
+        <Title level={4} className="text-red-800 mb-3">Artículos No Reembolsables</Title>
         <ul className="space-y-2 text-red-700">
-          <li>Tickets purchased within 48 hours of the event (unless event is cancelled)</li>
-          <li>Service and processing fees (unless event is cancelled by organizer)</li>
-          <li>Tickets marked as "No Refunds" at the time of purchase</li>
-          <li>Tickets purchased through third-party resellers</li>
-          <li>Digital downloads or streaming access codes</li>
+          <li>Boletos comprados dentro de las 48 horas del evento (a menos que el evento sea cancelado)</li>
+          <li>Tarifas de servicio y procesamiento (a menos que el evento sea cancelado por el organizador)</li>
+          <li>Boletos marcados como "Sin Reembolsos" al momento de la compra</li>
+          <li>Boletos comprados a través de revendedores de terceros</li>
+          <li>Descargas digitales o códigos de acceso de streaming</li>
         </ul>
       </Card>
 
       <Card className="mt-8 bg-blue-50 border-blue-200">
         <div className="text-center">
           <Title level={4} className="text-blue-800 mb-3">
-            Need Help with a Refund?
+            ¿Necesitas Ayuda con un Reembolso?
           </Title>
           <Paragraph className="text-blue-700 mb-4">
-            Our customer service team is here to help with your refund request.
+            Nuestro equipo de servicio al cliente está aquí para ayudarte con tu solicitud de reembolso.
           </Paragraph>
           <div className="space-y-2">
             <div>Email: refunds@tickethub.com</div>
-            <div>Phone: +1 (555) 123-4567</div>
-            <div>Hours: Monday-Friday 9AM-8PM, Saturday-Sunday 10AM-6PM</div>
+            <div>Teléfono: +1 (555) 123-4567</div>
+            <div>Horarios: Lunes-Viernes 9AM-8PM, Sábado-Domingo 10AM-6PM</div>
           </div>
         </div>
       </Card>

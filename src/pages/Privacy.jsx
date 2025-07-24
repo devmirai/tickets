@@ -8,138 +8,138 @@ const Privacy = () => {
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="text-center mb-8">
         <Title level={1} className="text-4xl font-bold text-gray-800 mb-4">
-          Privacy Policy
+          Política de Privacidad
         </Title>
-        <Text className="text-gray-600">Last updated: January 1, 2025</Text>
+        <Text className="text-gray-600">Última actualización: 1 de enero de 2025</Text>
       </div>
 
       <Card>
         <div className="space-y-6">
           <section>
-            <Title level={3}>1. Information We Collect</Title>
+            <Title level={3}>1. Información que Recopilamos</Title>
             <Paragraph>
-              We collect information you provide directly to us, such as when you create 
-              an account, make a purchase, or contact us for support. This may include:
+              Recopilamos información que nos proporcionas directamente, como cuando creas 
+              una cuenta, realizas una compra o nos contactas para obtener soporte. Esto puede incluir:
             </Paragraph>
             <ul className="ml-6 space-y-2">
-              <li>Name and contact information</li>
-              <li>Payment information</li>
-              <li>Account credentials</li>
-              <li>Communication preferences</li>
-              <li>Purchase history and preferences</li>
+              <li>Nombre e información de contacto</li>
+              <li>Información de pago</li>
+              <li>Credenciales de cuenta</li>
+              <li>Preferencias de comunicación</li>
+              <li>Historial de compras y preferencias</li>
             </ul>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>2. How We Use Your Information</Title>
+            <Title level={3}>2. Cómo Usamos Tu Información</Title>
             <Paragraph>
-              We use the information we collect to:
+              Usamos la información que recopilamos para:
             </Paragraph>
             <ul className="ml-6 space-y-2">
-              <li>Process transactions and send related information</li>
-              <li>Provide customer service and support</li>
-              <li>Send you technical notices and security alerts</li>
-              <li>Communicate about products, services, and events</li>
-              <li>Improve our services and develop new features</li>
+              <li>Procesar transacciones y enviar información relacionada</li>
+              <li>Proporcionar atención y soporte al cliente</li>
+              <li>Enviarte avisos técnicos y alertas de seguridad</li>
+              <li>Comunicarnos sobre productos, servicios y eventos</li>
+              <li>Mejorar nuestros servicios y desarrollar nuevas funciones</li>
             </ul>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>3. Information Sharing</Title>
+            <Title level={3}>3. Compartir Información</Title>
             <Paragraph>
-              We do not sell, trade, or otherwise transfer your personal information to 
-              third parties without your consent, except as described in this policy. 
-              We may share your information with:
+              No vendemos, intercambiamos o transferimos tu información personal a 
+              terceros sin tu consentimiento, excepto como se describe en esta política. 
+              Podemos compartir tu información con:
             </Paragraph>
             <ul className="ml-6 space-y-2">
-              <li>Service providers who assist in our operations</li>
-              <li>Event organizers for ticket fulfillment</li>
-              <li>Legal authorities when required by law</li>
-              <li>Business partners with your explicit consent</li>
+              <li>Proveedores de servicios que asisten en nuestras operaciones</li>
+              <li>Organizadores de eventos para el cumplimiento de boletos</li>
+              <li>Autoridades legales cuando lo requiera la ley</li>
+              <li>Socios comerciales con tu consentimiento explícito</li>
             </ul>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>4. Data Security</Title>
+            <Title level={3}>4. Seguridad de Datos</Title>
             <Paragraph>
-              We implement appropriate security measures to protect your personal information 
-              against unauthorized access, alteration, disclosure, or destruction. This includes:
+              Implementamos medidas de seguridad apropiadas para proteger tu información personal 
+              contra acceso no autorizado, alteración, divulgación o destrucción. Esto incluye:
             </Paragraph>
             <ul className="ml-6 space-y-2">
-              <li>SSL encryption for data transmission</li>
-              <li>Secure servers and databases</li>
-              <li>Regular security audits and updates</li>
-              <li>Limited access to personal information</li>
+              <li>Encriptación SSL para transmisión de datos</li>
+              <li>Servidores y bases de datos seguros</li>
+              <li>Auditorías de seguridad y actualizaciones regulares</li>
+              <li>Acceso limitado a información personal</li>
             </ul>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>5. Cookies and Tracking</Title>
+            <Title level={3}>5. Cookies y Seguimiento</Title>
             <Paragraph>
-              We use cookies and similar technologies to enhance your experience, analyze 
-              usage patterns, and provide personalized content. You can control cookie 
-              settings through your browser preferences.
+              Utilizamos cookies y tecnologías similares para mejorar tu experiencia, analizar 
+              patrones de uso y proporcionar contenido personalizado. Puedes controlar la 
+              configuración de cookies a través de las preferencias de tu navegador.
             </Paragraph>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>6. Your Rights</Title>
+            <Title level={3}>6. Tus Derechos</Title>
             <Paragraph>
-              You have the right to:
+              Tienes el derecho a:
             </Paragraph>
             <ul className="ml-6 space-y-2">
-              <li>Access and update your personal information</li>
-              <li>Delete your account and associated data</li>
-              <li>Opt-out of marketing communications</li>
-              <li>Request a copy of your data</li>
-              <li>File a complaint with regulatory authorities</li>
+              <li>Acceder y actualizar tu información personal</li>
+              <li>Eliminar tu cuenta y datos asociados</li>
+              <li>Optar por no recibir comunicaciones de marketing</li>
+              <li>Solicitar una copia de tus datos</li>
+              <li>Presentar una queja ante las autoridades regulatorias</li>
             </ul>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>7. Children's Privacy</Title>
+            <Title level={3}>7. Privacidad de Menores</Title>
             <Paragraph>
-              Our service is not intended for children under 13 years of age. We do not 
-              knowingly collect personal information from children under 13. If we become 
-              aware that we have collected such information, we will take steps to delete it.
+              Nuestro servicio no está destinado a menores de 13 años. No recopilamos 
+              intencionalmente información personal de menores de 13 años. Si nos enteramos 
+              de que hemos recopilado dicha información, tomaremos medidas para eliminarla.
             </Paragraph>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>8. Changes to This Policy</Title>
+            <Title level={3}>8. Cambios a Esta Política</Title>
             <Paragraph>
-              We may update this privacy policy from time to time. We will notify you of 
-              any changes by posting the new policy on this page and updating the "Last 
-              updated" date.
+              Podemos actualizar esta política de privacidad de vez en cuando. Te notificaremos 
+              sobre cualquier cambio publicando la nueva política en esta página y actualizando 
+              la fecha de "Última actualización".
             </Paragraph>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>9. Contact Us</Title>
+            <Title level={3}>9. Contáctanos</Title>
             <Paragraph>
-              If you have questions about this privacy policy, please contact us at:
+              Si tienes preguntas sobre esta política de privacidad, por favor contáctanos a:
               <br />
               Email: privacy@tickethub.com
               <br />
-              Phone: +1 (555) 123-4567
+              Teléfono: +1 (555) 123-4567
               <br />
-              Address: 123 Event Street, Downtown District, New York, NY 10001
+              Dirección: 123 Event Street, Downtown District, New York, NY 10001
             </Paragraph>
           </section>
         </div>

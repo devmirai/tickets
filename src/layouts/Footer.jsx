@@ -14,32 +14,32 @@ const Footer = () => {
           <Col xs={24} sm={12} md={6}>
             <Title level={4} className="text-white mb-4">TicketHub</Title>
             <Text className="text-gray-300">
-              Your premier destination for event tickets. Discover amazing events and book your tickets with ease.
+              Tu destino principal para boletos de eventos. Descubre eventos increíbles y reserva tus boletos con facilidad.
             </Text>
           </Col>
           
           <Col xs={24} sm={12} md={6}>
-            <Title level={5} className="text-white mb-4">Quick Links</Title>
+            <Title level={5} className="text-white mb-4">Enlaces Rápidos</Title>
             <div className="flex flex-col space-y-2">
-              <Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
-              <Link to="/" className="text-gray-300 hover:text-white transition-colors">Events</Link>
-              <Link to="/about" className="text-gray-300 hover:text-white transition-colors">About Us</Link>
-              <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">Contact</Link>
+              <Link to="/" className="text-gray-300 hover:text-white transition-colors">Inicio</Link>
+              <Link to="/" className="text-gray-300 hover:text-white transition-colors">Eventos</Link>
+              <Link to="/about" className="text-gray-300 hover:text-white transition-colors">Acerca de Nosotros</Link>
+              <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">Contacto</Link>
             </div>
           </Col>
           
           <Col xs={24} sm={12} md={6}>
-            <Title level={5} className="text-white mb-4">Support</Title>
+            <Title level={5} className="text-white mb-4">Soporte</Title>
             <div className="flex flex-col space-y-2">
-              <Link to="/help" className="text-gray-300 hover:text-white transition-colors">Help Center</Link>
-              <Link to="/terms" className="text-gray-300 hover:text-white transition-colors">Terms of Service</Link>
-              <Link to="/privacy" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</Link>
-              <Link to="/refunds" className="text-gray-300 hover:text-white transition-colors">Refund Policy</Link>
+              <Link to="/help" className="text-gray-300 hover:text-white transition-colors">Centro de Ayuda</Link>
+              <Link to="/terms" className="text-gray-300 hover:text-white transition-colors">Términos de Servicio</Link>
+              <Link to="/privacy" className="text-gray-300 hover:text-white transition-colors">Política de Privacidad</Link>
+              <Link to="/refunds" className="text-gray-300 hover:text-white transition-colors">Política de Reembolsos</Link>
             </div>
           </Col>
           
           <Col xs={24} sm={12} md={6}>
-            <Title level={5} className="text-white mb-4">Connect With Us</Title>
+            <Title level={5} className="text-white mb-4">Conéctate con Nosotros</Title>
             <div className="flex space-x-4 mb-4">
               <FacebookOutlined className="text-gray-300 hover:text-blue-500 text-xl cursor-pointer transition-colors" />
               <TwitterOutlined className="text-gray-300 hover:text-blue-400 text-xl cursor-pointer transition-colors" />
@@ -55,7 +55,7 @@ const Footer = () => {
         
         <div className="border-t border-gray-700 mt-8 pt-6 text-center">
           <Text className="text-gray-400">
-            © 2025 TicketHub. All rights reserved.
+            © 2025 TicketHub. Todos los derechos reservados.
           </Text>
         </div>
       </div>

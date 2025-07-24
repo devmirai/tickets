@@ -1,46 +1,46 @@
 [
   {
     "id": 1,
-    "name": "Rock Concert 2025",
+    "name": "Concierto de Rock 2025",
     "date": "2025-08-12",
-    "location": "National Stadium",
+    "location": "Estadio Nacional",
     "price": 150,
     "image": "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=800",
-    "description": "Experience the ultimate rock concert featuring top bands from around the world. A night of pure energy and unforgettable music awaits you.",
-    "category": "Music",
-    "duration": "4 hours"
+    "description": "Experimenta el concierto de rock definitivo con las mejores bandas de todo el mundo. Una noche de pura energía y música inolvidable te espera.",
+    "category": "Música",
+    "duration": "4 horas"
   },
   {
     "id": 2,
-    "name": "Jazz Festival",
+    "name": "Festival de Jazz",
     "date": "2025-09-05",
-    "location": "City Auditorium",
+    "location": "Auditorio de la Ciudad",
     "price": 90,
     "image": "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=800",
-    "description": "Immerse yourself in smooth jazz melodies performed by renowned artists. A sophisticated evening of musical excellence.",
-    "category": "Music",
-    "duration": "3 hours"
+    "description": "Sumérgete en melodías de jazz suaves interpretadas por artistas reconocidos. Una velada sofisticada de excelencia musical.",
+    "category": "Música",
+    "duration": "3 horas"
   },
   {
     "id": 3,
-    "name": "Comedy Night",
+    "name": "Noche de Comedia",
     "date": "2025-07-20",
-    "location": "Comedy Club Downtown",
+    "location": "Club de Comedia del Centro",
     "price": 45,
     "image": "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=800",
-    "description": "Laugh until your sides hurt with our lineup of hilarious comedians. Perfect for a fun night out with friends.",
-    "category": "Comedy",
-    "duration": "2.5 hours"
+    "description": "Ríete hasta que te duelan los costados con nuestra selección de comediantes divertidísimos. Perfecto para una noche divertida con amigos.",
+    "category": "Comedia",
+    "duration": "2.5 horas"
   },
   {
     "id": 4,
-    "name": "Theater Play: Hamlet",
+    "name": "Obra de Teatro: Hamlet",
     "date": "2025-10-15",
-    "location": "Grand Theater",
+    "location": "Gran Teatro",
     "price": 120,
     "image": "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=800",
-    "description": "Shakespeare's timeless tragedy brought to life with stunning performances and elaborate staging.",
-    "category": "Theater",
-    "duration": "3.5 hours"
+    "description": "La tragedia atemporal de Shakespeare cobra vida con actuaciones impresionantes y puesta en escena elaborada.",
+    "category": "Teatro",
+    "duration": "3.5 horas"
   }
 ]

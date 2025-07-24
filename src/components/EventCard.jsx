@@ -10,7 +10,7 @@ const EventCard = ({ event }) => {
   const navigate = useNavigate();
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString('es-ES', {
       weekday: 'short',
       year: 'numeric',
       month: 'short',
@@ -20,10 +20,10 @@ const EventCard = ({ event }) => {
 
   const getCategoryColor = (category) => {
     const colors = {
-      'Music': 'blue',
-      'Comedy': 'orange',
-      'Theater': 'purple',
-      'Sports': 'green'
+      'Música': 'blue',
+      'Comedia': 'orange',
+      'Teatro': 'purple',
+      'Deportes': 'green'
     };
     return colors[category] || 'default';
   };
@@ -54,7 +54,7 @@ const EventCard = ({ event }) => {
           onClick={() => navigate(`/event/${event.id}`)}
           className="w-full mx-4"
         >
-          View Details
+          Ver Detalles
         </Button>
       ]}
     >
@@ -78,7 +78,7 @@ const EventCard = ({ event }) => {
               <Text className="text-2xl font-bold text-blue-600">
                 ${event.price}
               </Text>
-              <Text className="text-gray-500 ml-1">per ticket</Text>
+              <Text className="text-gray-500 ml-1">por boleto</Text>
             </div>
           </div>
         }

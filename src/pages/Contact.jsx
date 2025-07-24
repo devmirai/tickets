@@ -10,7 +10,7 @@ const Contact = () => {
 
   const handleSubmit = (values) => {
     console.log('Contact form submitted:', values);
-    message.success('Thank you for your message! We\'ll get back to you within 24 hours.');
+    message.success('¡Gracias por tu mensaje! Te responderemos dentro de 24 horas.');
     form.resetFields();
   };
 
@@ -18,69 +18,69 @@ const Contact = () => {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="text-center mb-12">
         <Title level={1} className="text-4xl font-bold text-gray-800 mb-4">
-          Contact Us
+          Contáctanos
         </Title>
         <Paragraph className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Have questions or need assistance? We're here to help! Reach out to us 
-          through any of the channels below.
+          ¿Tienes preguntas o necesitas asistencia? ¡Estamos aquí para ayudarte! Contáctanos 
+          a través de cualquiera de los canales a continuación.
         </Paragraph>
       </div>
 
       <Row gutter={[32, 32]}>
         <Col xs={24} lg={12}>
-          <Card title="Get in Touch" className="h-full">
+          <Card title="Ponte en Contacto" className="h-full">
             <Form form={form} layout="vertical" onFinish={handleSubmit}>
               <Row gutter={16}>
                 <Col span={12}>
                   <Form.Item
                     name="firstName"
-                    label="First Name"
-                    rules={[{ required: true, message: 'Please enter your first name' }]}
+                    label="Nombre"
+                    rules={[{ required: true, message: 'Por favor ingresa tu nombre' }]}
                   >
-                    <Input placeholder="John" />
+                    <Input placeholder="Juan" />
                   </Form.Item>
                 </Col>
                 <Col span={12}>
                   <Form.Item
                     name="lastName"
-                    label="Last Name"
-                    rules={[{ required: true, message: 'Please enter your last name' }]}
+                    label="Apellido"
+                    rules={[{ required: true, message: 'Por favor ingresa tu apellido' }]}
                   >
-                    <Input placeholder="Doe" />
+                    <Input placeholder="Pérez" />
                   </Form.Item>
                 </Col>
               </Row>
               
               <Form.Item
                 name="email"
-                label="Email"
+                label="Correo Electrónico"
                 rules={[
-                  { required: true, message: 'Please enter your email' },
-                  { type: 'email', message: 'Please enter a valid email' }
+                  { required: true, message: 'Por favor ingresa tu correo electrónico' },
+                  { type: 'email', message: 'Por favor ingresa un correo electrónico válido' }
                 ]}
               >
-                <Input prefix={<MailOutlined />} placeholder="john.doe@example.com" />
+                <Input prefix={<MailOutlined />} placeholder="juan.perez@ejemplo.com" />
               </Form.Item>
               
               <Form.Item
                 name="subject"
-                label="Subject"
-                rules={[{ required: true, message: 'Please enter a subject' }]}
+                label="Asunto"
+                rules={[{ required: true, message: 'Por favor ingresa un asunto' }]}
               >
-                <Input placeholder="How can we help you?" />
+                <Input placeholder="¿Cómo podemos ayudarte?" />
               </Form.Item>
               
               <Form.Item
                 name="message"
-                label="Message"
-                rules={[{ required: true, message: 'Please enter your message' }]}
+                label="Mensaje"
+                rules={[{ required: true, message: 'Por favor ingresa tu mensaje' }]}
               >
-                <TextArea rows={6} placeholder="Tell us more about your inquiry..." />
+                <TextArea rows={6} placeholder="Cuéntanos más sobre tu consulta..." />
               </Form.Item>
               
               <Form.Item>
                 <Button type="primary" htmlType="submit" size="large" className="w-full">
-                  Send Message
+                  Enviar Mensaje
                 </Button>
               </Form.Item>
             </Form>
@@ -93,7 +93,7 @@ const Contact = () => {
               <div className="flex items-center space-x-4">
                 <MailOutlined className="text-2xl text-blue-500" />
                 <div>
-                  <Title level={5} className="mb-1">Email Us</Title>
+                  <Title level={5} className="mb-1">Envíanos un Email</Title>
                   <Text className="text-gray-600">info@tickethub.com</Text>
                   <br />
                   <Text className="text-gray-600">support@tickethub.com</Text>
@@ -105,10 +105,10 @@ const Contact = () => {
               <div className="flex items-center space-x-4">
                 <PhoneOutlined className="text-2xl text-green-500" />
                 <div>
-                  <Title level={5} className="mb-1">Call Us</Title>
+                  <Title level={5} className="mb-1">Llámanos</Title>
                   <Text className="text-gray-600">+1 (555) 123-4567</Text>
                   <br />
-                  <Text className="text-gray-600">Toll-free: +1 (800) 123-4567</Text>
+                  <Text className="text-gray-600">Línea gratuita: +1 (800) 123-4567</Text>
                 </div>
               </div>
             </Card>
@@ -117,7 +117,7 @@ const Contact = () => {
               <div className="flex items-center space-x-4">
                 <EnvironmentOutlined className="text-2xl text-red-500" />
                 <div>
-                  <Title level={5} className="mb-1">Visit Us</Title>
+                  <Title level={5} className="mb-1">Visítanos</Title>
                   <Text className="text-gray-600">
                     123 Event Street<br />
                     Downtown District<br />
@@ -131,11 +131,11 @@ const Contact = () => {
               <div className="flex items-center space-x-4">
                 <ClockCircleOutlined className="text-2xl text-purple-500" />
                 <div>
-                  <Title level={5} className="mb-1">Business Hours</Title>
+                  <Title level={5} className="mb-1">Horarios de Atención</Title>
                   <Text className="text-gray-600">
-                    Monday - Friday: 9:00 AM - 8:00 PM<br />
-                    Saturday: 10:00 AM - 6:00 PM<br />
-                    Sunday: 12:00 PM - 5:00 PM
+                    Lunes - Viernes: 9:00 AM - 8:00 PM<br />
+                    Sábado: 10:00 AM - 6:00 PM<br />
+                    Domingo: 12:00 PM - 5:00 PM
                   </Text>
                 </div>
               </div>

@@ -44,7 +44,7 @@ const EventDetail = () => {
       const response = await eventService.getEventById(id);
       setEvent(response.data);
     } catch (error) {
-      message.error('Event not found');
+      message.error('Evento no encontrado');
       navigate('/');
     } finally {
       setLoading(false);
@@ -55,7 +55,7 @@ const EventDetail = () => {
     setAddingToCart(true);
     try {
       cartUtils.addToCart(event, quantity);
-      message.success(`Added ${quantity} ticket${quantity > 1 ? 's' : ''} to cart!`);
+      message.success(`¡Agregado${quantity > 1 ? 's' : ''} ${quantity} boleto${quantity > 1 ? 's' : ''} al carrito!`);
       
       // Dispatch custom event to update cart count in header
       window.dispatchEvent(new Event('cartUpdated'));
@@ -63,14 +63,14 @@ const EventDetail = () => {
       // Optional: Navigate to cart
       // navigate('/cart');
     } catch (error) {
-      message.error('Failed to add to cart');
+      message.error('Error al agregar al carrito');
     } finally {
       setAddingToCart(false);
     }
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString('es-ES', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
@@ -80,24 +80,24 @@ const EventDetail = () => {
 
   const getCategoryColor = (category) => {
     const colors = {
-      'Music': 'blue',
-      'Comedy': 'orange',
-      'Theater': 'purple',
-      'Sports': 'green'
+      'Música': 'blue',
+      'Comedia': 'orange',
+      'Teatro': 'purple',
+      'Deportes': 'green'
     };
     return colors[category] || 'default';
   };
 
   if (loading) {
-    return <LoadingSpinner tip="Loading event details..." />;
+    return <LoadingSpinner tip="Cargando detalles del evento..." />;
   }
 
   if (!event) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-8 text-center">
-        <Title level={2}>Event Not Found</Title>
+        <Title level={2}>Evento No Encontrado</Title>
         <Button type="primary" onClick={() => navigate('/')}>
-          Back to Home
+          Volver al Inicio
         </Button>
       </div>
     );
@@ -108,9 +108,9 @@ const EventDetail = () => {
       {/* Breadcrumb */}
       <Breadcrumb className="mb-6">
         <Breadcrumb.Item>
-          <a onClick={() => navigate('/')}>Home</a>
+          <a onClick={() => navigate('/')}>Inicio</a>
         </Breadcrumb.Item>
-        <Breadcrumb.Item>Events</Breadcrumb.Item>
+        <Breadcrumb.Item>Eventos</Breadcrumb.Item>
         <Breadcrumb.Item>{event.name}</Breadcrumb.Item>
       </Breadcrumb>
 
@@ -120,7 +120,7 @@ const EventDetail = () => {
         onClick={() => navigate('/')}
         className="mb-6"
       >
-        Back to Events
+        Volver a Eventos
       </Button>
 
       <Row gutter={[32, 32]}>
@@ -168,7 +168,7 @@ const EventDetail = () => {
             <Divider />
 
             <div className="mb-6">
-              <Title level={4} className="text-gray-800 mb-3">About This Event</Title>
+              <Title level={4} className="text-gray-800 mb-3">Acerca de Este Evento</Title>
               <Paragraph className="text-gray-600 text-base leading-relaxed">
                 {event.description}
               </Paragraph>
@@ -182,12 +182,12 @@ const EventDetail = () => {
                 <Title level={2} className="text-blue-600 mb-2">
                   ${event.price}
                 </Title>
-                <Text className="text-gray-500 text-lg">per ticket</Text>
+                <Text className="text-gray-500 text-lg">por boleto</Text>
               </div>
 
               <div className="space-y-4">
                 <div className="flex items-center justify-center space-x-4">
-                  <Text strong className="text-lg">Quantity:</Text>
+                  <Text strong className="text-lg">Cantidad:</Text>
                   <InputNumber
                     min={1}
                     max={10}
@@ -213,7 +213,7 @@ const EventDetail = () => {
                     loading={addingToCart}
                     className="w-full h-12 text-lg font-semibold"
                   >
-                    Add to Cart
+                    Agregar al Carrito
                   </Button>
                   
                   <Button
@@ -221,7 +221,7 @@ const EventDetail = () => {
                     onClick={() => navigate('/cart')}
                     className="w-full h-12 text-lg"
                   >
-                    View Cart
+                    Ver Carrito
                   </Button>
                 </Space>
               </div>

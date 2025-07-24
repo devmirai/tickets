@@ -8,108 +8,108 @@ const Terms = () => {
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="text-center mb-8">
         <Title level={1} className="text-4xl font-bold text-gray-800 mb-4">
-          Terms of Service
+          Términos de Servicio
         </Title>
-        <Text className="text-gray-600">Last updated: January 1, 2025</Text>
+        <Text className="text-gray-600">Última actualización: 1 de enero de 2025</Text>
       </div>
 
       <Card>
         <div className="space-y-6">
           <section>
-            <Title level={3}>1. Acceptance of Terms</Title>
+            <Title level={3}>1. Aceptación de Términos</Title>
             <Paragraph>
-              By accessing and using TicketHub, you accept and agree to be bound by the terms 
-              and provision of this agreement. If you do not agree to abide by the above, 
-              please do not use this service.
+              Al acceder y usar TicketHub, aceptas y acuerdas estar sujeto a los términos 
+              y disposiciones de este acuerdo. Si no aceptas cumplir con lo anterior, 
+              por favor no uses este servicio.
             </Paragraph>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>2. Use License</Title>
+            <Title level={3}>2. Licencia de Uso</Title>
             <Paragraph>
-              Permission is granted to temporarily download one copy of TicketHub materials 
-              for personal, non-commercial transitory viewing only. This is the grant of a 
-              license, not a transfer of title, and under this license you may not:
+              Se otorga permiso para descargar temporalmente una copia de los materiales de TicketHub 
+              para visualización personal, no comercial y transitoria únicamente. Esta es la concesión de una 
+              licencia, no una transferencia de título, y bajo esta licencia no puedes:
             </Paragraph>
             <ul className="ml-6 space-y-2">
-              <li>modify or copy the materials</li>
-              <li>use the materials for any commercial purpose or for any public display</li>
-              <li>attempt to reverse engineer any software contained on the website</li>
-              <li>remove any copyright or other proprietary notations from the materials</li>
+              <li>modificar o copiar los materiales</li>
+              <li>usar los materiales para cualquier propósito comercial o para cualquier exhibición pública</li>
+              <li>intentar hacer ingeniería inversa de cualquier software contenido en el sitio web</li>
+              <li>remover cualquier derecho de autor u otras notaciones propietarias de los materiales</li>
             </ul>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>3. Ticket Purchases</Title>
+            <Title level={3}>3. Compra de Boletos</Title>
             <Paragraph>
-              All ticket sales are final unless otherwise specified by the event organizer. 
-              Prices are subject to change without notice. We reserve the right to refuse 
-              service to anyone for any reason at any time.
+              Todas las ventas de boletos son finales a menos que se especifique lo contrario por el organizador del evento. 
+              Los precios están sujetos a cambios sin previo aviso. Nos reservamos el derecho de rechazar 
+              el servicio a cualquier persona por cualquier razón en cualquier momento.
             </Paragraph>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>4. User Accounts</Title>
+            <Title level={3}>4. Cuentas de Usuario</Title>
             <Paragraph>
-              You are responsible for safeguarding the password and for maintaining the 
-              confidentiality of your account. You agree not to disclose your password 
-              to any third party and to take sole responsibility for activities that 
-              occur under your account.
+              Eres responsable de proteger la contraseña y de mantener la 
+              confidencialidad de tu cuenta. Aceptas no divulgar tu contraseña 
+              a terceros y asumir la responsabilidad exclusiva de las actividades que 
+              ocurran bajo tu cuenta.
             </Paragraph>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>5. Privacy Policy</Title>
+            <Title level={3}>5. Política de Privacidad</Title>
             <Paragraph>
-              Your privacy is important to us. Please review our Privacy Policy, which 
-              also governs your use of the service, to understand our practices.
+              Tu privacidad es importante para nosotros. Por favor revisa nuestra Política de Privacidad, que 
+              también rige tu uso del servicio, para entender nuestras prácticas.
             </Paragraph>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>6. Disclaimer</Title>
+            <Title level={3}>6. Descargo de Responsabilidad</Title>
             <Paragraph>
-              The materials on TicketHub are provided on an 'as is' basis. TicketHub 
-              makes no warranties, expressed or implied, and hereby disclaims and negates 
-              all other warranties including without limitation, implied warranties or 
-              conditions of merchantability, fitness for a particular purpose, or 
-              non-infringement of intellectual property or other violation of rights.
+              Los materiales en TicketHub se proporcionan "tal como están". TicketHub 
+              no ofrece garantías, expresas o implícitas, y por la presente rechaza y anula 
+              todas las demás garantías incluyendo sin limitación, garantías implícitas o 
+              condiciones de comerciabilidad, idoneidad para un propósito particular, o 
+              no infracción de propiedad intelectual u otra violación de derechos.
             </Paragraph>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>7. Limitations</Title>
+            <Title level={3}>7. Limitaciones</Title>
             <Paragraph>
-              In no event shall TicketHub or its suppliers be liable for any damages 
-              (including, without limitation, damages for loss of data or profit, or 
-              due to business interruption) arising out of the use or inability to use 
-              TicketHub materials, even if TicketHub or an authorized representative 
-              has been notified orally or in writing of the possibility of such damage.
+              En ningún caso TicketHub o sus proveedores serán responsables por cualquier daño 
+              (incluyendo, sin limitación, daños por pérdida de datos o ganancias, o 
+              debido a interrupción del negocio) que surja del uso o la incapacidad de usar 
+              los materiales de TicketHub, incluso si TicketHub o un representante autorizado 
+              ha sido notificado oralmente o por escrito de la posibilidad de tal daño.
             </Paragraph>
           </section>
 
           <Divider />
 
           <section>
-            <Title level={3}>8. Contact Information</Title>
+            <Title level={3}>8. Información de Contacto</Title>
             <Paragraph>
-              If you have any questions about these Terms of Service, please contact us at:
+              Si tienes alguna pregunta sobre estos Términos de Servicio, por favor contáctanos a:
               <br />
               Email: legal@tickethub.com
               <br />
-              Phone: +1 (555) 123-4567
+              Teléfono: +1 (555) 123-4567
             </Paragraph>
           </section>
         </div>

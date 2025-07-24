@@ -10,43 +10,43 @@ const Help = () => {
   const faqData = [
     {
       key: '1',
-      question: 'How do I purchase tickets?',
-      answer: 'Browse events on our homepage, select an event, choose your quantity, and click "Add to Cart". Then proceed to checkout to complete your purchase with secure payment processing.'
+      question: '¿Cómo compro boletos?',
+      answer: 'Explora eventos en nuestra página principal, selecciona un evento, elige tu cantidad y haz clic en "Agregar al Carrito". Luego procede al checkout para completar tu compra con procesamiento de pago seguro.'
     },
     {
       key: '2',
-      question: 'Can I cancel or refund my tickets?',
-      answer: 'Refund policies vary by event. Most tickets can be refunded up to 48 hours before the event. Check the specific event\'s refund policy on the event details page or contact our support team.'
+      question: '¿Puedo cancelar o reembolsar mis boletos?',
+      answer: 'Las políticas de reembolso varían según el evento. La mayoría de los boletos pueden ser reembolsados hasta 48 horas antes del evento. Consulta la política de reembolso específica del evento en la página de detalles del evento o contacta a nuestro equipo de soporte.'
     },
     {
       key: '3',
-      question: 'How will I receive my tickets?',
-      answer: 'After purchase, you\'ll receive an email confirmation with your digital tickets. You can also download them from your confirmation page. Present the tickets on your mobile device or print them out.'
+      question: '¿Cómo recibiré mis boletos?',
+      answer: 'Después de la compra, recibirás un email de confirmación con tus boletos digitales. También puedes descargarlos desde tu página de confirmación. Presenta los boletos en tu dispositivo móvil o imprímelos.'
     },
     {
       key: '4',
-      question: 'Is my payment information secure?',
-      answer: 'Yes! We use industry-standard SSL encryption and secure payment processors to protect your personal and financial information. We never store your complete credit card details.'
+      question: '¿Mi información de pago está segura?',
+      answer: '¡Sí! Utilizamos encriptación SSL estándar de la industria y procesadores de pago seguros para proteger tu información personal y financiera. Nunca almacenamos los detalles completos de tu tarjeta de crédito.'
     },
     {
       key: '5',
-      question: 'What if an event is cancelled?',
-      answer: 'If an event is cancelled by the organizer, you\'ll receive a full automatic refund within 5-7 business days. We\'ll also notify you via email about the cancellation and refund status.'
+      question: '¿Qué pasa si un evento es cancelado?',
+      answer: 'Si un evento es cancelado por el organizador, recibirás un reembolso completo automático dentro de 5-7 días hábiles. También te notificaremos por email sobre la cancelación y el estado del reembolso.'
     },
     {
       key: '6',
-      question: 'Can I transfer my tickets to someone else?',
-      answer: 'Most tickets can be transferred to another person. You can do this through your account dashboard or by contacting our support team. Some events may have restrictions on transfers.'
+      question: '¿Puedo transferir mis boletos a otra persona?',
+      answer: 'La mayoría de los boletos pueden ser transferidos a otra persona. Puedes hacer esto a través del panel de tu cuenta o contactando a nuestro equipo de soporte. Algunos eventos pueden tener restricciones en las transferencias.'
     },
     {
       key: '7',
-      question: 'What payment methods do you accept?',
-      answer: 'We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and Apple Pay. All transactions are processed securely through our payment partners.'
+      question: '¿Qué métodos de pago aceptan?',
+      answer: 'Aceptamos todas las tarjetas de crédito principales (Visa, MasterCard, American Express), PayPal y Apple Pay. Todas las transacciones se procesan de forma segura a través de nuestros socios de pago.'
     },
     {
       key: '8',
-      question: 'How do I contact customer support?',
-      answer: 'You can reach our support team via email at support@tickethub.com, call us at +1 (555) 123-4567, or use the contact form on our Contact page. We typically respond within 24 hours.'
+      question: '¿Cómo contacto al servicio al cliente?',
+      answer: 'Puedes contactar a nuestro equipo de soporte por email a support@tickethub.com, llamarnos al +1 (555) 123-4567, o usar el formulario de contacto en nuestra página de Contacto. Típicamente respondemos dentro de 24 horas.'
     }
   ];
 
@@ -54,18 +54,18 @@ const Help = () => {
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="text-center mb-12">
         <Title level={1} className="text-4xl font-bold text-gray-800 mb-4">
-          Help Center
+          Centro de Ayuda
         </Title>
         <Paragraph className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Find answers to common questions and get the help you need.
+          Encuentra respuestas a preguntas comunes y obtén la ayuda que necesitas.
         </Paragraph>
       </div>
 
       <Card className="mb-8">
         <div className="text-center">
-          <Title level={3} className="mb-4">Search for Help</Title>
+          <Title level={3} className="mb-4">Buscar Ayuda</Title>
           <Search
-            placeholder="What can we help you with?"
+            placeholder="¿En qué podemos ayudarte?"
             enterButton={<SearchOutlined />}
             size="large"
             className="max-w-md"
@@ -76,7 +76,7 @@ const Help = () => {
       <Card title={
         <div className="flex items-center">
           <QuestionCircleOutlined className="mr-2 text-blue-500" />
-          Frequently Asked Questions
+          Preguntas Frecuentes
         </div>
       }>
         <Collapse accordion>
@@ -93,13 +93,13 @@ const Help = () => {
       <Card className="mt-8 bg-blue-50 border-blue-200">
         <div className="text-center">
           <Title level={4} className="text-blue-800 mb-3">
-            Still need help?
+            ¿Aún necesitas ayuda?
           </Title>
           <Paragraph className="text-blue-700 mb-4">
-            Can't find what you're looking for? Our support team is here to help!
+            ¿No encuentras lo que buscas? ¡Nuestro equipo de soporte está aquí para ayudarte!
           </Paragraph>
           <Button type="primary" size="large">
-            Contact Support
+            Contactar Soporte
           </Button>
         </div>
       </Card>

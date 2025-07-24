@@ -40,7 +40,7 @@ const Home = () => {
       const response = await eventService.getAllEvents();
       setEvents(response.data);
     } catch (error) {
-      message.error('Failed to load events. Please try again.');
+      message.error('Error al cargar eventos. Por favor, inténtalo de nuevo.');
       console.error('Error loading events:', error);
     } finally {
       setLoading(false);
@@ -83,7 +83,7 @@ const Home = () => {
   };
 
   if (loading) {
-    return <LoadingSpinner tip="Loading amazing events..." />;
+    return <LoadingSpinner tip="Cargando eventos increíbles..." />;
   }
 
   return (
@@ -91,11 +91,11 @@ const Home = () => {
       {/* Hero Section */}
       <div className="text-center mb-12">
         <Title level={1} className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-          Discover Amazing Events
+          Descubre Eventos Increíbles
         </Title>
         <Paragraph className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Find and book tickets for concerts, shows, festivals, and more. 
-          Your next unforgettable experience is just a click away.
+          Encuentra y reserva boletos para conciertos, espectáculos, festivales y más. 
+          Tu próxima experiencia inolvidable está a solo un clic de distancia.
         </Paragraph>
       </div>
 
@@ -104,7 +104,7 @@ const Home = () => {
         <Row gutter={[16, 16]} justify="center">
           <Col xs={24} sm={16} md={12}>
             <Search
-              placeholder="Search events, locations, or categories..."
+              placeholder="Buscar eventos, ubicaciones o categorías..."
               allowClear
               enterButton={<SearchOutlined />}
               size="large"
@@ -115,13 +115,13 @@ const Home = () => {
           </Col>
           <Col xs={24} sm={8} md={6}>
             <Select
-              placeholder="All Categories"
+              placeholder="Todas las Categorías"
               size="large"
               value={categoryFilter}
               onChange={handleCategoryChange}
               className="w-full"
             >
-              <Option value="all">All Categories</Option>
+              <Option value="all">Todas las Categorías</Option>
               {getUniqueCategories().map(category => (
                 <Option key={category} value={category}>
                   {category}
@@ -136,8 +136,8 @@ const Home = () => {
       <div className="mb-6">
         <Title level={3} className="text-gray-700">
           {searchQuery || categoryFilter !== 'all' 
-            ? `Found ${filteredEvents.length} event${filteredEvents.length !== 1 ? 's' : ''}`
-            : `All Events (${filteredEvents.length})`
+            ? `Se encontraron ${filteredEvents.length} evento${filteredEvents.length !== 1 ? 's' : ''}`
+            : `Todos los Eventos (${filteredEvents.length})`
           }
         </Title>
       </div>
@@ -154,7 +154,7 @@ const Home = () => {
       ) : (
         <div className="text-center py-12">
           <Empty
-            description="No events found matching your criteria"
+            description="No se encontraron eventos que coincidan con tus criterios"
             className="text-gray-500"
           />
         </div>

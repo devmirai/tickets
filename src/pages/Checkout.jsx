@@ -38,7 +38,7 @@ const Checkout = () => {
   useEffect(() => {
     const items = cartUtils.getCart();
     if (items.length === 0) {
-      message.warning('Your cart is empty');
+      message.warning('Tu carrito está vacío');
       navigate('/cart');
       return;
     }
@@ -68,11 +68,11 @@ const Checkout = () => {
       cartUtils.clearCart();
       window.dispatchEvent(new Event('cartUpdated'));
       
-      message.success('Order placed successfully!');
+      message.success('¡Orden realizada exitosamente!');
       navigate('/confirmation');
       
     } catch (error) {
-      message.error('Payment failed. Please try again.');
+      message.error('Error en el pago. Por favor, inténtalo de nuevo.');
     } finally {
       setLoading(false);
     }
@@ -82,7 +82,7 @@ const Checkout = () => {
     form.validateFields().then(() => {
       setCurrentStep(currentStep + 1);
     }).catch(() => {
-      message.error('Please fill in all required fields');
+      message.error('Por favor completa todos los campos requeridos');
     });
   };
 
@@ -96,18 +96,18 @@ const Checkout = () => {
 
   const steps = [
     {
-      title: 'Personal Info',
+      title: 'Info Personal',
       content: (
         <Row gutter={16}>
           <Col span={12}>
             <Form.Item
               name="firstName"
-              label="First Name"
-              rules={[{ required: true, message: 'Please enter your first name' }]}
+              label="Nombre"
+              rules={[{ required: true, message: 'Por favor ingresa tu nombre' }]}
             >
               <Input 
                 prefix={<UserOutlined />} 
-                placeholder="John" 
+                placeholder="Juan" 
                 size="large"
               />
             </Form.Item>
@@ -115,12 +115,12 @@ const Checkout = () => {
           <Col span={12}>
             <Form.Item
               name="lastName"
-              label="Last Name"
-              rules={[{ required: true, message: 'Please enter your last name' }]}
+              label="Apellido"
+              rules={[{ required: true, message: 'Por favor ingresa tu apellido' }]}
             >
               <Input 
                 prefix={<UserOutlined />} 
-                placeholder="Doe" 
+                placeholder="Pérez" 
                 size="large"
               />
             </Form.Item>
@@ -128,15 +128,15 @@ const Checkout = () => {
           <Col span={24}>
             <Form.Item
               name="email"
-              label="Email"
+              label="Correo Electrónico"
               rules={[
-                { required: true, message: 'Please enter your email' },
-                { type: 'email', message: 'Please enter a valid email' }
+                { required: true, message: 'Por favor ingresa tu correo electrónico' },
+                { type: 'email', message: 'Por favor ingresa un correo electrónico válido' }
               ]}
             >
               <Input 
                 prefix={<MailOutlined />} 
-                placeholder="john.doe@example.com" 
+                placeholder="juan.perez@ejemplo.com" 
                 size="large"
               />
             </Form.Item>
@@ -144,8 +144,8 @@ const Checkout = () => {
           <Col span={24}>
             <Form.Item
               name="phone"
-              label="Phone Number"
-              rules={[{ required: true, message: 'Please enter your phone number' }]}
+              label="Número de Teléfono"
+              rules={[{ required: true, message: 'Por favor ingresa tu número de teléfono' }]}
             >
               <Input 
                 prefix={<PhoneOutlined />} 
@@ -158,12 +158,12 @@ const Checkout = () => {
       )
     },
     {
-      title: 'Payment',
+      title: 'Pago',
       content: (
         <div>
           <Form.Item
             name="paymentMethod"
-            label="Payment Method"
+            label="Método de Pago"
             initialValue="credit-card"
           >
             <Radio.Group 
@@ -174,7 +174,7 @@ const Checkout = () => {
               <Space direction="vertical" className="w-full">
                 <Radio value="credit-card" className="w-full p-4 border rounded">
                   <CreditCardOutlined className="mr-2" />
-                  Credit/Debit Card
+                  Tarjeta de Crédito/Débito
                 </Radio>
                 <Radio value="paypal" className="w-full p-4 border rounded">
                   PayPal
@@ -192,8 +192,8 @@ const Checkout = () => {
                 <Col span={24}>
                   <Form.Item
                     name="cardNumber"
-                    label="Card Number"
-                    rules={[{ required: true, message: 'Please enter your card number' }]}
+                    label="Número de Tarjeta"
+                    rules={[{ required: true, message: 'Por favor ingresa el número de tu tarjeta' }]}
                   >
                     <Input 
                       prefix={<CreditCardOutlined />}
@@ -205,11 +205,11 @@ const Checkout = () => {
                 <Col span={12}>
                   <Form.Item
                     name="expiryDate"
-                    label="Expiry Date"
-                    rules={[{ required: true, message: 'Please enter expiry date' }]}
+                    label="Fecha de Vencimiento"
+                    rules={[{ required: true, message: 'Por favor ingresa la fecha de vencimiento' }]}
                   >
                     <Input 
-                      placeholder="MM/YY" 
+                      placeholder="MM/AA" 
                       size="large"
                     />
                   </Form.Item>
@@ -218,7 +218,7 @@ const Checkout = () => {
                   <Form.Item
                     name="cvv"
                     label="CVV"
-                    rules={[{ required: true, message: 'Please enter CVV' }]}
+                    rules={[{ required: true, message: 'Por favor ingresa el CVV' }]}
                   >
                     <Input 
                       prefix={<LockOutlined />}
@@ -230,11 +230,11 @@ const Checkout = () => {
                 <Col span={24}>
                   <Form.Item
                     name="cardName"
-                    label="Name on Card"
-                    rules={[{ required: true, message: 'Please enter name on card' }]}
+                    label="Nombre en la Tarjeta"
+                    rules={[{ required: true, message: 'Por favor ingresa el nombre en la tarjeta' }]}
                   >
                     <Input 
-                      placeholder="John Doe" 
+                      placeholder="Juan Pérez" 
                       size="large"
                     />
                   </Form.Item>
@@ -254,7 +254,7 @@ const Checkout = () => {
         onClick={() => navigate('/cart')}
         className="mb-6"
       >
-        Back to Cart
+        Volver al Carrito
       </Button>
 
       <Title level={2} className="text-center mb-8">Checkout</Title>
@@ -279,13 +279,13 @@ const Checkout = () => {
               <div className="flex justify-between">
                 {currentStep > 0 && (
                   <Button size="large" onClick={prevStep}>
-                    Previous
+                    Anterior
                   </Button>
                 )}
                 
                 {currentStep < steps.length - 1 ? (
                   <Button type="primary" size="large" onClick={nextStep} className="ml-auto">
-                    Next
+                    Siguiente
                   </Button>
                 ) : (
                   <Button 
@@ -295,7 +295,7 @@ const Checkout = () => {
                     loading={loading}
                     className="ml-auto"
                   >
-                    Place Order
+                    Realizar Pedido
                   </Button>
                 )}
               </div>
@@ -305,14 +305,14 @@ const Checkout = () => {
 
         {/* Order Summary */}
         <Col xs={24} lg={10}>
-          <Card title="Order Summary" className="shadow-md sticky top-24">
+          <Card title="Resumen del Pedido" className="shadow-md sticky top-24">
             <div className="space-y-4">
               {cartItems.map(item => (
                 <div key={item.id} className="flex justify-between items-center">
                   <div className="flex-1">
                     <Text strong>{item.name}</Text>
                     <div className="text-gray-500 text-sm">
-                      Qty: {item.quantity} × ${item.price}
+                      Cant: {item.quantity} × ${item.price}
                     </div>
                   </div>
                   <Text strong className="text-blue-600">
@@ -329,7 +329,7 @@ const Checkout = () => {
               </div>
               
               <div className="flex justify-between">
-                <Text>Service Fee:</Text>
+                <Text>Tarifa de Servicio:</Text>
                 <Text strong>${serviceFee}</Text>
               </div>
               

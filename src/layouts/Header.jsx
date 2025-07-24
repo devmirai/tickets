@@ -41,7 +41,7 @@ const Header = () => {
     {
       key: 'home',
       icon: <HomeOutlined />,
-      label: <Link to="/">Home</Link>,
+      label: <Link to="/">Inicio</Link>,
     },
   ];
 
@@ -68,7 +68,7 @@ const Header = () => {
               onClick={() => navigate('/cart')}
               className="flex items-center"
             >
-              Cart
+              Carrito
             </Button>
           </Badge>
         </div>
