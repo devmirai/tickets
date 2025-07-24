@@ -61,14 +61,6 @@ const Header = () => {
         </div>
         
         <div className="flex items-center space-x-4">
-          <Search
-            placeholder="Search events..."
-            allowClear
-            onSearch={handleSearch}
-            style={{ width: 250 }}
-            enterButton={<SearchOutlined />}
-          />
-          
           <Badge count={cartCount} showZero>
             <Button
               type="text"

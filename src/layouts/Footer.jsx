@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout, Row, Col, Typography } from 'antd';
 import { FacebookOutlined, TwitterOutlined, InstagramOutlined, MailOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 const { Footer: AntFooter } = Layout;
 const { Title, Text } = Typography;
@@ -20,20 +21,20 @@ const Footer = () => {
           <Col xs={24} sm={12} md={6}>
             <Title level={5} className="text-white mb-4">Quick Links</Title>
             <div className="flex flex-col space-y-2">
-              <a href="/" className="text-gray-300 hover:text-white transition-colors">Home</a>
-              <a href="/events" className="text-gray-300 hover:text-white transition-colors">Events</a>
-              <a href="/about" className="text-gray-300 hover:text-white transition-colors">About Us</a>
-              <a href="/contact" className="text-gray-300 hover:text-white transition-colors">Contact</a>
+              <Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
+              <Link to="/" className="text-gray-300 hover:text-white transition-colors">Events</Link>
+              <Link to="/about" className="text-gray-300 hover:text-white transition-colors">About Us</Link>
+              <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">Contact</Link>
             </div>
           </Col>
           
           <Col xs={24} sm={12} md={6}>
             <Title level={5} className="text-white mb-4">Support</Title>
             <div className="flex flex-col space-y-2">
-              <a href="/help" className="text-gray-300 hover:text-white transition-colors">Help Center</a>
-              <a href="/terms" className="text-gray-300 hover:text-white transition-colors">Terms of Service</a>
-              <a href="/privacy" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a>
-              <a href="/refunds" className="text-gray-300 hover:text-white transition-colors">Refund Policy</a>
+              <Link to="/help" className="text-gray-300 hover:text-white transition-colors">Help Center</Link>
+              <Link to="/terms" className="text-gray-300 hover:text-white transition-colors">Terms of Service</Link>
+              <Link to="/privacy" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/refunds" className="text-gray-300 hover:text-white transition-colors">Refund Policy</Link>
             </div>
           </Col>
           
