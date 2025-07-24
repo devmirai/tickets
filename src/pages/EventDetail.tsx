@@ -309,12 +309,13 @@ const EventDetail = () => {
             <Card className="bg-gray-50 border-0 shadow-sm">
               <div className="text-center mb-4">
                 <Title level={2} className="text-blue-600 mb-2">
-                  ${eventPrice?.toLocaleString()}
+                  S/{eventPrice?.toLocaleString()}
                 </Title>
                 <Text className="text-gray-500 text-lg">por boleto</Text>
               </div>
 
               {event.availableTickets > 0 ? (
+                // Mostrar controles de compra
                 <div className="space-y-4">
                   <div className="flex items-center justify-center space-x-4">
                     <Text strong className="text-lg">Cantidad:</Text>
@@ -330,7 +331,7 @@ const EventDetail = () => {
 
                   <div className="text-center">
                     <Text className="text-xl">
-                      Total: <Text strong className="text-blue-600">${(eventPrice * quantity).toLocaleString()}</Text>
+                      Total: <Text strong className="text-blue-600">S/{(eventPrice * quantity).toLocaleString()}</Text>
                     </Text>
                   </div>
 
@@ -356,6 +357,7 @@ const EventDetail = () => {
                   </Space>
                 </div>
               ) : (
+                // Mostrar mensaje de agotado y ocultar botón de compra
                 <div className="text-center">
                   <Title level={4} className="text-red-500 mb-4">Evento Agotado</Title>
                   <Text className="text-gray-500">
@@ -382,7 +384,7 @@ const EventDetail = () => {
           <strong>Debug Info:</strong><br />
           ID del evento: {event.id}<br />
           Boletos disponibles: {event.availableTickets}<br />
-          Precio: ${eventPrice}<br />
+          Precio: S/{eventPrice}<br />
           Fecha: {eventDate}<br />
           Activo: {event.isActive ? 'Sí' : 'No'}
         </div>

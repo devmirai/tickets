@@ -153,7 +153,7 @@ const Confirmation = () => {
                 
                 <div className="text-right">
                   <div className="text-lg font-semibold text-blue-600">
-                    {item.quantity} × ${item.price} = ${item.totalPrice}
+                    {item.quantity} × S/{item.price} = S/{item.totalPrice}
                   </div>
                   <Text className="text-gray-500">
                     {item.quantity} boleto{item.quantity > 1 ? 's' : ''}
@@ -172,16 +172,16 @@ const Confirmation = () => {
         <div className="space-y-3">
           <div className="flex justify-between">
             <Text>Subtotal:</Text>
-            <Text strong>${orderData.orderTotal - 5}</Text>
+            <Text strong>S/{orderData.orderTotal - 5}</Text>
           </div>
           <div className="flex justify-between">
             <Text>Tarifa de Servicio:</Text>
-            <Text strong>$5.00</Text>
+            <Text strong>S/5.00</Text>
           </div>
           <Divider />
           <div className="flex justify-between">
             <Title level={4}>Total Pagado:</Title>
-            <Title level={4} className="text-green-600">${orderData.orderTotal}</Title>
+            <Title level={4} className="text-green-600">S/{orderData.orderTotal}</Title>
           </div>
         </div>
       </Card>

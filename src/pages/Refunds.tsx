@@ -46,7 +46,7 @@ const Refunds = () => {
             <div>
               <Title level={5}>Monto del Reembolso</Title>
               <Paragraph>
-                Los reembolsos completos incluyen el precio del boleto menos las tarifas de procesamiento (típicamente $2-5 por boleto). 
+                Los reembolsos completos incluyen el precio del boleto menos las tarifas de procesamiento (típicamente S/2-5 por boleto). 
                 Las tarifas de servicio no son reembolsables a menos que el evento sea cancelado por el organizador.
               </Paragraph>
             </div>

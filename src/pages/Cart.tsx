@@ -103,7 +103,7 @@ const Cart = () => {
       dataIndex: 'price',
       key: 'price',
       render: (price) => (
-        <Text strong className="text-lg text-blue-600">${price}</Text>
+        <Text strong className="text-lg text-blue-600">S/{price}</Text>
       ),
     },
     {
@@ -126,7 +126,7 @@ const Cart = () => {
       dataIndex: 'totalPrice',
       key: 'totalPrice',
       render: (total) => (
-        <Text strong className="text-xl text-green-600">${total}</Text>
+        <Text strong className="text-xl text-green-600">S/{total}</Text>
       ),
     },
     {
@@ -245,17 +245,17 @@ const Cart = () => {
             <div className="space-y-2">
               <div className="flex justify-between items-center min-w-[200px]">
                 <Text className="text-gray-600">Subtotal:</Text>
-                <Text strong className="text-lg">${cartTotal}</Text>
+                <Text strong className="text-lg">S/{cartTotal}</Text>
               </div>
               <div className="flex justify-between items-center">
                 <Text className="text-gray-600">Service Fee:</Text>
-                <Text strong className="text-lg">$5.00</Text>
+                <Text strong className="text-lg">S/5.00</Text>
               </div>
               <Divider className="my-3" />
               <div className="flex justify-between items-center">
                 <Text strong className="text-xl">Total:</Text>
                 <Text strong className="text-2xl text-blue-600">
-                  ${cartTotal + 5}
+                  S/{cartTotal + 5}
                 </Text>
               </div>
             </div>

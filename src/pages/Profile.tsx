@@ -318,7 +318,7 @@ const Profile = () => {
       title: 'Total',
       dataIndex: 'totalPrice',
       key: 'totalPrice',
-      render: (price: number) => `$${price}`,
+      render: (price: number) => `S/${price}`,
     },
     {
       title: 'Estado',
@@ -428,7 +428,7 @@ const Profile = () => {
     { title: 'Lugar', dataIndex: 'venue', key: 'venue' },
     { title: 'Categoría', dataIndex: 'category', key: 'category' },
     { title: 'Boletos', dataIndex: 'totalTickets', key: 'totalTickets' },
-    { title: 'Precio Base', dataIndex: 'basePrice', key: 'basePrice', render: (price: string) => `$${Number(price).toLocaleString()}` },
+    { title: 'Precio Base', dataIndex: 'basePrice', key: 'basePrice', render: (price: string) => `S/${Number(price).toLocaleString()}` },
     { title: 'Estado', dataIndex: 'isActive', key: 'isActive', render: (active: boolean) => active ? <Tag color="green">Activo</Tag> : <Tag color="red">Inactivo</Tag> }
   ];
 
@@ -618,7 +618,7 @@ const Profile = () => {
               <Col span={12}>
                 <Card size="small">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">${selectedTicket.totalPrice}</div>
+                    <div className="text-2xl font-bold text-green-600">S/{selectedTicket.totalPrice}</div>
                     <div className="text-gray-500">Total Pagado</div>
                   </div>
                 </Card>
@@ -710,10 +710,10 @@ const Profile = () => {
                   // Si el año es el actual, solo permitir meses mayores al actual
                   if (year === currentYear) {
                     if (currentMonth === 12) {
-                      return Promise.reject('Solo puedes ingresar mes 1 y año siguiente');
+                      return Promise.reject('Fecha no valida.');
                     }
                     if (value <= currentMonth || value > 12) {
-                      return Promise.reject(`Solo puedes ingresar meses del ${currentMonth + 1} al 12 para el año ${currentYear}`);
+                      return Promise.reject(`Fecha no valida.`);
                     }
                     return Promise.resolve();
                   }

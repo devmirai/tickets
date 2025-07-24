@@ -11,7 +11,8 @@ import {
   Col,
   message,
   Steps,
-  Space
+  Space,
+  InputNumber
 } from 'antd';
 import { 
   UserOutlined, 
@@ -329,11 +330,24 @@ const Checkout = () => {
                   <div className="flex-1">
                     <Text strong>{item.name}</Text>
                     <div className="text-gray-500 text-sm">
-                      Cant: {item.quantity} × ${item.price}
+                      Cant: 
+                      <InputNumber
+                        min={1}
+                        max={item.availableTickets || 1}
+                        value={item.quantity}
+                        disabled
+                        className="ml-2"
+                      /> 
+                      × S/{item.price}
+                      {item.quantity > (item.availableTickets || 1) && (
+                        <Text type="danger" className="ml-2">
+                          (Máximo {item.availableTickets} disponibles)
+                        </Text>
+                      )}
                     </div>
                   </div>
                   <Text strong className="text-blue-600">
-                    ${item.totalPrice}
+                    S/{item.totalPrice}
                   </Text>
                 </div>
               ))}
@@ -342,19 +356,19 @@ const Checkout = () => {
               
               <div className="flex justify-between">
                 <Text>Subtotal:</Text>
-                <Text strong>${cartTotal}</Text>
+                <Text strong>S/{cartTotal}</Text>
               </div>
               
               <div className="flex justify-between">
                 <Text>Tarifa de Servicio:</Text>
-                <Text strong>${serviceFee}</Text>
+                <Text strong>S/${serviceFee}</Text>
               </div>
               
               <Divider />
               
               <div className="flex justify-between">
                 <Title level={4}>Total:</Title>
-                <Title level={4} className="text-blue-600">${totalAmount}</Title>
+                <Title level={4} className="text-blue-600">S/{totalAmount}</Title>
               </div>
             </div>
           </Card>

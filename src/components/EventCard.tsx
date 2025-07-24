@@ -138,7 +138,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
             
             <div className="mt-3">
               <Text className="text-2xl font-bold text-blue-600">
-                ${eventPrice?.toLocaleString()}
+                S/{eventPrice?.toLocaleString()}
               </Text>
               <Text className="text-gray-500 ml-1">por boleto</Text>
             </div>
