@@ -1,18 +1,39 @@
 import React, { useState, useEffect } from 'react';
+
+type Event = {
+  id: number;
+  title: string;
+  address: string;
+  availableTickets: number;
+  basePrice: number;
+  category: string;
+  city: string;
+  companyId: number;
+  country: string;
+  createdAt: string;
+  description: string;
+  eventDate: string;
+  imageUrl: string;
+  isActive: boolean;
+  ticketTypes: any[];
+  totalTickets: number;
+  updatedAt: string;
+  venue: string;
+};
 import { Row, Col, Typography, Input, Select, message, Empty } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { useSearchParams } from 'react-router-dom';
 import EventCard from '../components/EventCard';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { eventService } from '../services/eventService';
+import { authService } from '../services/authService';
 
 const { Title, Paragraph } = Typography;
 const { Search } = Input;
 const { Option } = Select;
 
 const Home = () => {
-  const [events, setEvents] = useState([]);
-  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
@@ -37,8 +58,8 @@ const Home = () => {
   const loadEvents = async () => {
     try {
       setLoading(true);
-      const response = await eventService.getAllEvents();
-      setEvents(response.data);
+      const events = await authService.listEvents();
+      setEvents(events);
     } catch (error) {
       message.error('Error al cargar eventos. Por favor, inténtalo de nuevo.');
       console.error('Error loading events:', error);
@@ -53,33 +74,33 @@ const Home = () => {
     // Filter by search query
     if (searchQuery) {
       filtered = filtered.filter(event =>
-        event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        event.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        event.category.toLowerCase().includes(searchQuery.toLowerCase())
+        event.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.venue?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.category?.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
     // Filter by category
     if (categoryFilter !== 'all') {
       filtered = filtered.filter(event =>
-        event.category.toLowerCase() === categoryFilter.toLowerCase()
+        event.category?.toLowerCase() === categoryFilter.toLowerCase()
       );
     }
 
     setFilteredEvents(filtered);
   };
 
-  const handleSearch = (value) => {
+  const handleSearch = (value: string) => {
     setSearchQuery(value);
   };
 
-  const handleCategoryChange = (value) => {
+  const handleCategoryChange = (value: string) => {
     setCategoryFilter(value);
   };
 
   const getUniqueCategories = () => {
     const categories = [...new Set(events.map(event => event.category))];
-    return categories;
+    return categories.filter(Boolean);
   };
 
   if (loading) {

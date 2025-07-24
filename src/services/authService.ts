@@ -24,10 +24,12 @@ export const authService = {
       body: JSON.stringify(credentials)
     });
     const result = await response.json();
-    if (response.ok && result.success && result.data) {
-      localStorage.setItem('tickethub_user', JSON.stringify(result.data.user));
-      localStorage.setItem('tickethub_token', result.data.token);
-      return result.data.user;
+    // Nuevo formato: user, token, refreshToken, message en la raíz
+    if (response.ok && result.user && result.token) {
+      localStorage.setItem('tickethub_user', JSON.stringify(result.user));
+      localStorage.setItem('tickethub_token', result.token);
+      localStorage.setItem('tickethub_refresh_token', result.refreshToken || '');
+      return result.user;
     }
     return null;
   },
@@ -147,5 +149,21 @@ export const authService = {
     });
     const result = await response.json();
     return response.ok && result.success === true;
+  },
+
+  // List all available events
+  async listEvents(): Promise<any[]> {
+    const response = await fetch('http://127.0.0.1:5000/api/events', {
+      method: 'GET'
+    });
+    const result = await response.json();
+    if (response.ok && result) {
+      // Filtrar solo las propiedades que son eventos (excluyendo 'pagination')
+      const events = Object.keys(result)
+        .filter(key => key !== 'pagination')
+        .map(key => result[key]);
+      return events;
+    }
+    return [];
   }
 };
