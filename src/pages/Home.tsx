@@ -242,18 +242,6 @@ const Home = () => {
           </Empty>
         </div>
       )}
-
-      {/* Debug info en desarrollo */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="mt-8 p-4 bg-gray-100 rounded text-sm text-gray-600">
-          <strong>Debug Info:</strong><br />
-          Total eventos cargados: {events.length}<br />
-          Eventos filtrados: {filteredEvents.length}<br />
-          Búsqueda: {searchQuery || 'ninguna'}<br />
-          Categoría: {categoryFilter}<br />
-          Categorías disponibles: {getUniqueCategories().join(', ')}
-        </div>
-      )}
     </div>
   );
 };

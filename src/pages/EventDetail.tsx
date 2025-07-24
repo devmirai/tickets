@@ -377,18 +377,6 @@ const EventDetail = () => {
           </div>
         </Col>
       </Row>
-
-      {/* Debug info en desarrollo */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="mt-8 p-4 bg-gray-100 rounded text-sm text-gray-600">
-          <strong>Debug Info:</strong><br />
-          ID del evento: {event.id}<br />
-          Boletos disponibles: {event.availableTickets}<br />
-          Precio: S/{eventPrice}<br />
-          Fecha: {eventDate}<br />
-          Activo: {event.isActive ? 'Sí' : 'No'}
-        </div>
-      )}
     </div>
   );
 };
