@@ -1,40 +1,49 @@
 import React, { useState, useEffect } from 'react';
-
-type Event = {
-  id: number;
-  title: string;
-  address: string;
-  availableTickets: number;
-  basePrice: number;
-  category: string;
-  city: string;
-  companyId: number;
-  country: string;
-  createdAt: string;
-  description: string;
-  eventDate: string;
-  imageUrl: string;
-  isActive: boolean;
-  ticketTypes: any[];
-  totalTickets: number;
-  updatedAt: string;
-  venue: string;
-};
-import { Row, Col, Typography, Input, Select, message, Empty } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import { Row, Col, Typography, Input, Select, message, Empty, Alert } from 'antd';
+import { SearchOutlined, ReloadOutlined } from '@ant-design/icons';
 import { useSearchParams } from 'react-router-dom';
 import EventCard from '../components/EventCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { authService } from '../services/authService';
+import { Button } from 'antd';
 
 const { Title, Paragraph } = Typography;
 const { Search } = Input;
 const { Option } = Select;
 
+// Tipo para el evento
+type Event = {
+  id: string;
+  name: string;
+  title: string;
+  venue: string;
+  address: string;
+  city: string;
+  country: string;
+  availableTickets: number;
+  basePrice: number;
+  price: number;
+  category: string;
+  companyId: number;
+  createdAt: string;
+  description: string;
+  eventDate: string;
+  date: string;
+  imageUrl: string;
+  image: string;
+  isActive: boolean;
+  ticketTypes: any[];
+  totalTickets: number;
+  updatedAt: string;
+  location: string;
+  duration?: string;
+};
+
 const Home = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [searchParams] = useSearchParams();
@@ -58,11 +67,21 @@ const Home = () => {
   const loadEvents = async () => {
     try {
       setLoading(true);
-      const events = await authService.listEvents();
-      setEvents(events);
+      setError(null);
+      
+      const eventsData = await authService.listEvents();
+      console.log('Eventos cargados:', eventsData); // Para debug
+      
+      if (Array.isArray(eventsData)) {
+        setEvents(eventsData);
+      } else {
+        console.error('La respuesta no es un array:', eventsData);
+        setError('Formato de respuesta inesperado del servidor');
+      }
     } catch (error) {
-      message.error('Error al cargar eventos. Por favor, inténtalo de nuevo.');
       console.error('Error loading events:', error);
+      setError('Error al cargar eventos. Por favor, verifica que el servidor esté funcionando.');
+      message.error('Error al cargar eventos. Por favor, inténtalo de nuevo.');
     } finally {
       setLoading(false);
     }
@@ -73,10 +92,14 @@ const Home = () => {
 
     // Filter by search query
     if (searchQuery) {
+      const query = searchQuery.toLowerCase();
       filtered = filtered.filter(event =>
-        event.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        event.venue?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        event.category?.toLowerCase().includes(searchQuery.toLowerCase())
+        (event.title?.toLowerCase().includes(query) ||
+         event.name?.toLowerCase().includes(query) ||
+         event.venue?.toLowerCase().includes(query) ||
+         event.city?.toLowerCase().includes(query) ||
+         event.category?.toLowerCase().includes(query) ||
+         event.description?.toLowerCase().includes(query))
       );
     }
 
@@ -86,6 +109,9 @@ const Home = () => {
         event.category?.toLowerCase() === categoryFilter.toLowerCase()
       );
     }
+
+    // Solo mostrar eventos activos
+    filtered = filtered.filter(event => event.isActive !== false);
 
     setFilteredEvents(filtered);
   };
@@ -103,8 +129,31 @@ const Home = () => {
     return categories.filter(Boolean);
   };
 
+  const handleRetry = () => {
+    loadEvents();
+  };
+
   if (loading) {
     return <LoadingSpinner tip="Cargando eventos increíbles..." />;
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <Alert
+          message="Error al cargar eventos"
+          description={error}
+          type="error"
+          showIcon
+          action={
+            <Button size="small" icon={<ReloadOutlined />} onClick={handleRetry}>
+              Reintentar
+            </Button>
+          }
+          className="mb-8"
+        />
+      </div>
+    );
   }
 
   return (
@@ -175,9 +224,31 @@ const Home = () => {
       ) : (
         <div className="text-center py-12">
           <Empty
-            description="No se encontraron eventos que coincidan con tus criterios"
+            description={
+              events.length === 0 
+                ? "No hay eventos disponibles en este momento" 
+                : "No se encontraron eventos que coincidan con tus criterios"
+            }
             className="text-gray-500"
-          />
+          >
+            {events.length === 0 && (
+              <Button type="primary" icon={<ReloadOutlined />} onClick={handleRetry}>
+                Recargar eventos
+              </Button>
+            )}
+          </Empty>
+        </div>
+      )}
+
+      {/* Debug info en desarrollo */}
+      {process.env.NODE_ENV === 'development' && (
+        <div className="mt-8 p-4 bg-gray-100 rounded text-sm text-gray-600">
+          <strong>Debug Info:</strong><br />
+          Total eventos cargados: {events.length}<br />
+          Eventos filtrados: {filteredEvents.length}<br />
+          Búsqueda: {searchQuery || 'ninguna'}<br />
+          Categoría: {categoryFilter}<br />
+          Categorías disponibles: {getUniqueCategories().join(', ')}
         </div>
       )}
     </div>

@@ -1,7 +1,27 @@
 // Types for cart functionality
 export interface Event {
   id: string;
+  name?: string;
+  title?: string;
+  price?: number;
+  basePrice?: number;
+  date?: string;
+  eventDate?: string;
+  location?: string;
+  venue?: string;
+  city?: string;
+  image?: string;
+  imageUrl?: string;
+  category: string;
+  description?: string;
+  duration?: string;
+  availableTickets?: number;
+}
+
+export interface CartItem {
+  id: string;
   name: string;
+  title: string;
   price: number;
   date: string;
   location: string;
@@ -9,23 +29,53 @@ export interface Event {
   category: string;
   description?: string;
   duration?: string;
-}
-
-export interface CartItem extends Event {
   quantity: number;
   totalPrice: number;
+  availableTickets?: number;
 }
+
+// Función para normalizar un evento para el carrito
+const normalizeEventForCart = (event: Event): Omit<CartItem, 'quantity' | 'totalPrice'> => {
+  const eventName = event.name || event.title || 'Evento sin nombre';
+  const eventPrice = event.price || event.basePrice || 0;
+  const eventDate = event.date || event.eventDate || '';
+  const eventLocation = event.location || (event.venue && event.city ? `${event.venue}, ${event.city}` : 'Ubicación no especificada');
+  const eventImage = event.image || event.imageUrl || 'https://via.placeholder.com/300x200?text=Evento';
+
+  return {
+    id: event.id,
+    name: eventName,
+    title: eventName,
+    price: eventPrice,
+    date: eventDate,
+    location: eventLocation,
+    image: eventImage,
+    category: event.category,
+    description: event.description,
+    duration: event.duration,
+    availableTickets: event.availableTickets
+  };
+};
 
 export const cartUtils = {
   // Get cart from localStorage
   getCart(): CartItem[] {
-    const cart = localStorage.getItem('ticketCart');
-    return cart ? JSON.parse(cart) : [];
+    try {
+      const cart = localStorage.getItem('ticketCart');
+      return cart ? JSON.parse(cart) : [];
+    } catch (error) {
+      console.error('Error reading cart from localStorage:', error);
+      return [];
+    }
   },
 
   // Save cart to localStorage
   saveCart(cart: CartItem[]): void {
-    localStorage.setItem('ticketCart', JSON.stringify(cart));
+    try {
+      localStorage.setItem('ticketCart', JSON.stringify(cart));
+    } catch (error) {
+      console.error('Error saving cart to localStorage:', error);
+    }
   },
 
   // Add item to cart
@@ -37,10 +87,11 @@ export const cartUtils = {
       existingItem.quantity += quantity;
       existingItem.totalPrice = existingItem.price * existingItem.quantity;
     } else {
+      const normalizedEvent = normalizeEventForCart(event);
       cart.push({
-        ...event,
+        ...normalizedEvent,
         quantity,
-        totalPrice: event.price * quantity
+        totalPrice: normalizedEvent.price * quantity
       });
     }
     
@@ -75,7 +126,11 @@ export const cartUtils = {
 
   // Clear cart
   clearCart(): CartItem[] {
-    localStorage.removeItem('ticketCart');
+    try {
+      localStorage.removeItem('ticketCart');
+    } catch (error) {
+      console.error('Error clearing cart:', error);
+    }
     return [];
   },
 
@@ -89,5 +144,17 @@ export const cartUtils = {
   getCartItemsCount(): number {
     const cart = this.getCart();
     return cart.reduce((count, item) => count + item.quantity, 0);
+  },
+
+  // Check if event is in cart
+  isInCart(eventId: string): boolean {
+    const cart = this.getCart();
+    return cart.some(item => item.id === eventId);
+  },
+
+  // Get item from cart
+  getCartItem(eventId: string): CartItem | undefined {
+    const cart = this.getCart();
+    return cart.find(item => item.id === eventId);
   }
 };
