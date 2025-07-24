@@ -1,22 +1,41 @@
+// Types for cart functionality
+export interface Event {
+  id: string;
+  name: string;
+  price: number;
+  date: string;
+  location: string;
+  image: string;
+  category: string;
+  description?: string;
+  duration?: string;
+}
+
+export interface CartItem extends Event {
+  quantity: number;
+  totalPrice: number;
+}
+
 export const cartUtils = {
   // Get cart from localStorage
-  getCart() {
+  getCart(): CartItem[] {
     const cart = localStorage.getItem('ticketCart');
     return cart ? JSON.parse(cart) : [];
   },
 
   // Save cart to localStorage
-  saveCart(cart) {
+  saveCart(cart: CartItem[]): void {
     localStorage.setItem('ticketCart', JSON.stringify(cart));
   },
 
   // Add item to cart
-  addToCart(event, quantity = 1) {
+  addToCart(event: Event, quantity: number = 1): CartItem[] {
     const cart = this.getCart();
     const existingItem = cart.find(item => item.id === event.id);
     
     if (existingItem) {
       existingItem.quantity += quantity;
+      existingItem.totalPrice = existingItem.price * existingItem.quantity;
     } else {
       cart.push({
         ...event,
@@ -30,7 +49,7 @@ export const cartUtils = {
   },
 
   // Remove item from cart
-  removeFromCart(eventId) {
+  removeFromCart(eventId: string): CartItem[] {
     let cart = this.getCart();
     cart = cart.filter(item => item.id !== eventId);
     this.saveCart(cart);
@@ -38,7 +57,7 @@ export const cartUtils = {
   },
 
   // Update item quantity
-  updateQuantity(eventId, quantity) {
+  updateQuantity(eventId: string, quantity: number): CartItem[] {
     const cart = this.getCart();
     const item = cart.find(item => item.id === eventId);
     
@@ -55,19 +74,19 @@ export const cartUtils = {
   },
 
   // Clear cart
-  clearCart() {
+  clearCart(): CartItem[] {
     localStorage.removeItem('ticketCart');
     return [];
   },
 
   // Get total cart amount
-  getCartTotal() {
+  getCartTotal(): number {
     const cart = this.getCart();
     return cart.reduce((total, item) => total + item.totalPrice, 0);
   },
 
   // Get total items count
-  getCartItemsCount() {
+  getCartItemsCount(): number {
     const cart = this.getCart();
     return cart.reduce((count, item) => count + item.quantity, 0);
   }

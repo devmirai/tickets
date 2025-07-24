@@ -1,5 +1,5 @@
-import React from 'react';
 import { ConfigProvider } from 'antd';
+import esES from 'antd/locale/es_ES';
 import AppRoutes from './routes/AppRoutes';
 import 'antd/dist/reset.css';
 
@@ -31,7 +31,7 @@ const theme = {
 
 function App() {
   return (
-    <ConfigProvider theme={theme}>
+    <ConfigProvider theme={theme} locale={esES}>
       <AppRoutes />
     </ConfigProvider>
   );
