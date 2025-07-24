@@ -193,7 +193,7 @@ export const usePaymentSimulator = () => {
     
     try {
       // Primero crear la orden
-      const orderResponse = await fetch('/api/orders', {
+      const orderResponse = await fetch('/user/api/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -40,7 +40,7 @@ const normalizeEventForCart = (event: Event): Omit<CartItem, 'quantity' | 'total
   const eventPrice = event.price || event.basePrice || 0;
   const eventDate = event.date || event.eventDate || '';
   const eventLocation = event.location || (event.venue && event.city ? `${event.venue}, ${event.city}` : 'Ubicación no especificada');
-  const eventImage = event.image || event.imageUrl || 'https://via.placeholder.com/300x200?text=Evento';
+  const eventImage = event.image || event.imageUrl || 'https://img.freepik.com/foto-gratis/gente-festival_1160-736.jpg?semt=ais_hybrid&w=740';
 
   return {
     id: event.id,

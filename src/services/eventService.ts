@@ -1,3 +1,12 @@
+// src/services/eventService.ts
+
+// Interfaz para la información de la empresa
+interface ApiCompany {
+  id: number;
+  name: string;
+  email: string;
+}
+
 // Interfaz para el evento que viene del backend
 interface ApiEvent {
   id: number;
@@ -15,12 +24,18 @@ interface ApiEvent {
   imageUrl: string;
   isActive: boolean;
   companyId: number;
+  company?: ApiCompany;
   createdAt: string;
   updatedAt: string;
   ticketTypes: any[];
 }
 
-// Interfaz para la respuesta de la API
+// Interfaz para la respuesta de la API de evento individual
+interface ApiEventResponse {
+  event: ApiEvent;
+}
+
+// Interfaz para la respuesta de la API de múltiples eventos
 interface ApiEventsResponse {
   events: ApiEvent[];
   pagination: {
@@ -55,6 +70,7 @@ const transformApiEvent = (apiEvent: ApiEvent) => ({
   imageUrl: apiEvent.imageUrl,
   isActive: apiEvent.isActive,
   companyId: apiEvent.companyId,
+  company: apiEvent.company,
   duration: '2 horas', // Valor por defecto ya que no viene en la API
   ticketTypes: apiEvent.ticketTypes,
   createdAt: apiEvent.createdAt,
@@ -65,7 +81,7 @@ export const eventService = {
   // Get all events
   async getAllEvents() {
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/events', {
+      const response = await fetch('http://localhost:5000/api/events', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -101,10 +117,10 @@ export const eventService = {
     }
   },
 
-  // Get event by ID
+  // Get event by ID - ACTUALIZADO para manejar la nueva estructura
   async getEventById(id: string | number) {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/events/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/events/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -122,11 +138,12 @@ export const eventService = {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
-      const result: ApiEventsResponse = await response.json();
+      // La nueva API devuelve { event: { ... } } para eventos individuales
+      const result: ApiEventResponse = await response.json();
       
-      if (result && result.events && Array.isArray(result.events) && result.events.length > 0) {
+      if (result && result.event) {
         return {
-          data: transformApiEvent(result.events[0]),
+          data: transformApiEvent(result.event),
           status: response.status
         };
       }
@@ -150,7 +167,7 @@ export const eventService = {
   async searchEvents(query: string) {
     try {
       const encodedQuery = encodeURIComponent(query);
-      const response = await fetch(`http://127.0.0.1:5000/api/events?search=${encodedQuery}`, {
+      const response = await fetch(`http://localhost:5000/api/events?search=${encodedQuery}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -190,7 +207,7 @@ export const eventService = {
   async getEventsByCategory(category: string) {
     try {
       const encodedCategory = encodeURIComponent(category);
-      const response = await fetch(`http://127.0.0.1:5000/api/events?category=${encodedCategory}`, {
+      const response = await fetch(`http://localhost:5000/api/events?category=${encodedCategory}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

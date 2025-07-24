@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Form, 
   Input, 
@@ -23,6 +23,7 @@ import {
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { cartUtils } from '../utils/cartUtils';
+import { API_ROUTES } from '../services/apiConfig';
 
 const { Title, Text } = Typography;
 const { Step } = Steps;
@@ -30,9 +31,11 @@ const { Step } = Steps;
 const Checkout = () => {
   const [form] = Form.useForm();
   const [cartItems, setCartItems] = useState([]);
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0); // Solo método de pago
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('credit-card');
+  const [paymentMethods, setPaymentMethods] = useState([]);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,32 +48,79 @@ const Checkout = () => {
     setCartItems(items);
   }, [navigate]);
 
+  useEffect(() => {
+    const fetchPaymentMethods = async () => {
+      const token = localStorage.getItem('tickethub_token');
+      if (!token) return;
+      try {
+        const response = await fetch(API_ROUTES.paymentMethods, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setPaymentMethods(data);
+          if (data.length > 0) setSelectedPaymentMethod(data.find(m => m.is_default) || data[0]);
+        }
+      } catch (err) {
+        setPaymentMethods([]);
+      }
+    };
+    fetchPaymentMethods();
+  }, []);
+
   const handleSubmit = async (values) => {
     setLoading(true);
-    
+
     try {
-      // Simulate payment processing
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      const orderData = {
-        ...values,
-        cartItems,
+      const token = localStorage.getItem('tickethub_token');
+      if (!token) {
+        message.error('No estás autenticado.');
+        setLoading(false);
+        return;
+      }
+
+      // Construye el array de items para la orden
+      const items = cartItems.map(item => ({
+        eventId: item.eventId || item.id,
+        ticketTypeId: item.ticketTypeId || 1,
+        quantity: item.quantity,
+        unitPrice: item.price,
+        totalPrice: item.totalPrice
+      }));
+
+      // Determina el método de pago (string, no objeto)
+      const paymentMethod =
+        paymentMethods.length > 0
+          ? (selectedPaymentMethod?.type === 'paypal' ? 'paypal' : 'tarjeta')
+          : paymentMethod;
+
+      // Dirección de facturación como string
+      const billingAddress = "Calle Falsa 123";
+
+      const orderPayload = {
+        items,
         paymentMethod,
-        orderTotal: cartUtils.getCartTotal() + 5,
-        orderId: `ORD-${Date.now()}`,
-        orderDate: new Date().toISOString()
+        billingAddress
       };
-      
-      // Store order data for confirmation page
-      localStorage.setItem('lastOrder', JSON.stringify(orderData));
-      
-      // Clear cart
+
+      const response = await fetch(API_ROUTES.orders, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderPayload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al crear la orden');
+      }
+
       cartUtils.clearCart();
       window.dispatchEvent(new Event('cartUpdated'));
-      
       message.success('¡Orden realizada exitosamente!');
       navigate('/confirmation');
-      
+
     } catch (error) {
       message.error('Error en el pago. Por favor, inténtalo de nuevo.');
     } finally {
@@ -96,97 +146,64 @@ const Checkout = () => {
 
   const steps = [
     {
-      title: 'Info Personal',
-      content: (
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item
-              name="firstName"
-              label="Nombre"
-              rules={[{ required: true, message: 'Por favor ingresa tu nombre' }]}
-            >
-              <Input 
-                prefix={<UserOutlined />} 
-                placeholder="Juan" 
-                size="large"
-              />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              name="lastName"
-              label="Apellido"
-              rules={[{ required: true, message: 'Por favor ingresa tu apellido' }]}
-            >
-              <Input 
-                prefix={<UserOutlined />} 
-                placeholder="Pérez" 
-                size="large"
-              />
-            </Form.Item>
-          </Col>
-          <Col span={24}>
-            <Form.Item
-              name="email"
-              label="Correo Electrónico"
-              rules={[
-                { required: true, message: 'Por favor ingresa tu correo electrónico' },
-                { type: 'email', message: 'Por favor ingresa un correo electrónico válido' }
-              ]}
-            >
-              <Input 
-                prefix={<MailOutlined />} 
-                placeholder="juan.perez@ejemplo.com" 
-                size="large"
-              />
-            </Form.Item>
-          </Col>
-          <Col span={24}>
-            <Form.Item
-              name="phone"
-              label="Número de Teléfono"
-              rules={[{ required: true, message: 'Por favor ingresa tu número de teléfono' }]}
-            >
-              <Input 
-                prefix={<PhoneOutlined />} 
-                placeholder="+1 (555) 123-4567" 
-                size="large"
-              />
-            </Form.Item>
-          </Col>
-        </Row>
-      )
-    },
-    {
       title: 'Pago',
       content: (
         <div>
-          <Form.Item
-            name="paymentMethod"
-            label="Método de Pago"
-            initialValue="credit-card"
-          >
-            <Radio.Group 
-              value={paymentMethod} 
-              onChange={(e) => setPaymentMethod(e.target.value)}
-              className="w-full"
+          {paymentMethods.length > 0 ? (
+            <Form.Item
+              name="paymentMethod"
+              label="Selecciona un método de pago"
+              rules={[{ required: true, message: 'Selecciona un método de pago' }]}
+              initialValue={selectedPaymentMethod?.id}
             >
-              <Space direction="vertical" className="w-full">
-                <Radio value="credit-card" className="w-full p-4 border rounded">
-                  <CreditCardOutlined className="mr-2" />
-                  Tarjeta de Crédito/Débito
-                </Radio>
-                <Radio value="paypal" className="w-full p-4 border rounded">
-                  PayPal
-                </Radio>
-                <Radio value="apple-pay" className="w-full p-4 border rounded">
-                  Apple Pay
-                </Radio>
-              </Space>
-            </Radio.Group>
-          </Form.Item>
+              <Radio.Group
+                value={selectedPaymentMethod?.id}
+                onChange={e => setSelectedPaymentMethod(paymentMethods.find(m => m.id === e.target.value))}
+                className="w-full"
+              >
+                <Space direction="vertical" className="w-full">
+                  {paymentMethods.map(method => (
+                    <Radio key={method.id} value={method.id} className="w-full p-4 border rounded">
+                      {method.type === 'paypal'
+                        ? <>PayPal {method.is_default && <span>(Predeterminado)</span>}</>
+                        : <>
+                            {method.provider} {method.card_type} ****{method.last_four_digits} {method.is_default && <span>(Predeterminado)</span>}
+                          </>
+                      }
+                    </Radio>
+                  ))}
+                </Space>
+              </Radio.Group>
+            </Form.Item>
+          ) : (
+            <Form.Item
+              name="paymentMethod"
+              label="Método de Pago"
+              initialValue="credit-card"
+            >
+              <Radio.Group 
+                value={paymentMethod} 
+                onChange={(e) => setPaymentMethod(e.target.value)}
+                className="w-full"
+              >
+                <Space direction="vertical" className="w-full">
+                  <Radio value="credit-card" className="w-full p-4 border rounded">
+                    <CreditCardOutlined className="mr-2" />
+                    Tarjeta de Crédito/Débito
+                  </Radio>
+                  <Radio value="paypal" className="w-full p-4 border rounded">
+                    PayPal
+                  </Radio>
+                  <Radio value="apple-pay" className="w-full p-4 border rounded">
+                    Apple Pay
+                  </Radio>
+                </Space>
+              </Radio.Group>
+            </Form.Item>
+          )}
 
-          {paymentMethod === 'credit-card' && (
+          {/* Si el usuario selecciona "credit-card" y no tiene métodos guardados, muestra el formulario manual */}
+          {paymentMethods.length === 0 && paymentMethod === 'credit-card' && (
             <div className="mt-6 space-y-4">
               <Row gutter={16}>
                 <Col span={24}>

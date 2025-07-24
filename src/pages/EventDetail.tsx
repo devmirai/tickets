@@ -20,12 +20,13 @@ import {
   ClockCircleOutlined,
   ShoppingCartOutlined,
   ArrowLeftOutlined,
-  UserGroupOutlined,
+  UsergroupAddOutlined,
   ReloadOutlined
 } from '@ant-design/icons';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { eventService } from '../services/eventService';
+import { eventService } from '../services/eventService.ts';
 import { cartUtils } from '../utils/cartUtils';
+import { useAuth } from '../contexts/AuthContext';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -61,6 +62,7 @@ const EventDetail = () => {
   const [error, setError] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [addingToCart, setAddingToCart] = useState(false);
+  const { user } = useAuth(); // Obtén el usuario autenticado
 
   useEffect(() => {
     if (id) {
@@ -70,13 +72,10 @@ const EventDetail = () => {
 
   const loadEvent = async () => {
     if (!id) return;
-    
     try {
       setLoading(true);
       setError(null);
-      
-      const response = await eventService.getEventById(id);
-      
+      const response = await eventService.getEventById(id); // <-- Llama a la API
       if (response.data) {
         setEvent(response.data);
       } else {
@@ -93,8 +92,13 @@ const EventDetail = () => {
   };
 
   const handleAddToCart = async () => {
+    if (!user) {
+      message.warning('Debes iniciar sesión para agregar al carrito');
+      navigate('/login');
+      return;
+    }
     if (!event) return;
-    
+
     setAddingToCart(true);
     try {
       // Verificar disponibilidad
@@ -225,12 +229,12 @@ const EventDetail = () => {
         <Col xs={24} lg={12}>
           <div className="relative">
             <img
-              src={eventImage || 'https://via.placeholder.com/600x400?text=Evento'}
+              src={eventImage || 'https://img.freepik.com/foto-gratis/gente-festival_1160-736.jpg?semt=ais_hybrid&w=740'}
               alt={eventName}
               className="w-full h-96 object-cover rounded-lg shadow-lg"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = 'https://via.placeholder.com/600x400?text=Evento';
+                target.src = 'https://img.freepik.com/foto-gratis/gente-festival_1160-736.jpg?semt=ais_hybrid&w=740';
               }}
             />
             <Tag
@@ -285,7 +289,7 @@ const EventDetail = () => {
               )}
 
               <div className="flex items-center text-lg text-gray-600">
-                <UserGroupOutlined className="mr-3 text-purple-500" />
+                <UsergroupAddOutlined className="mr-3 text-purple-500" />
                 <Text strong>{event.availableTickets} de {event.totalTickets} disponibles</Text>
               </div>
             </div>

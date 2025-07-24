@@ -59,7 +59,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const eventImage = event.image || event.imageUrl;
 
   // Imagen por defecto si no hay imagen
-  const imageUrl = eventImage || 'https://via.placeholder.com/300x200?text=Evento';
+  const imageUrl = eventImage || 'https://img.freepik.com/foto-gratis/gente-festival_1160-736.jpg?semt=ais_hybrid&w=740';
 
   return (
     <Card
@@ -74,7 +74,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
             onError={(e) => {
               // Imagen de fallback si la imagen falla al cargar
               const target = e.target as HTMLImageElement;
-              target.src = 'https://via.placeholder.com/300x200?text=Evento';
+              target.src = 'https://img.freepik.com/foto-gratis/gente-festival_1160-736.jpg?semt=ais_hybrid&w=740';
             }}
           />
           <Tag

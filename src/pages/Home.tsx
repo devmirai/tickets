@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Typography, Input, Select, message, Empty, Alert } from 'antd';
 import { SearchOutlined, ReloadOutlined } from '@ant-design/icons';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import EventCard from '../components/EventCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { authService } from '../services/authService';
@@ -47,6 +47,7 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadEvents();
@@ -217,7 +218,9 @@ const Home = () => {
         <Row gutter={[24, 24]}>
           {filteredEvents.map(event => (
             <Col xs={24} sm={12} lg={8} xl={6} key={event.id}>
-              <EventCard event={event} />
+              <div onClick={() => navigate(`/event/${event.id}`)} style={{ cursor: 'pointer' }}>
+                <EventCard event={event} />
+              </div>
             </Col>
           ))}
         </Row>
