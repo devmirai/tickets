@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import esES from 'antd/locale/es_ES';
 import AppRoutes from './routes/AppRoutes';
+import { AuthProvider } from './contexts/AuthContext';
 import 'antd/dist/reset.css';
 
 // Ant Design theme configuration
@@ -32,7 +33,9 @@ const theme = {
 function App() {
   return (
     <ConfigProvider theme={theme} locale={esES}>
-      <AppRoutes />
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
     </ConfigProvider>
   );
 }

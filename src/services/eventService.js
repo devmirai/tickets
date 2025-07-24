@@ -1,43 +1,43 @@
-import axios from 'axios';
-import eventsData from '../mocks/events.json';
-
-// Simulate API delay
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
 export const eventService = {
   // Get all events
   async getAllEvents() {
-    await delay(500); // Simulate network delay
+    const token = localStorage.getItem('tickethub_token');
+    const response = await fetch('http://127.0.0.1:5000/api/events', {
+      method: 'GET',
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    });
+    const result = await response.json();
     return {
-      data: eventsData,
-      status: 200
+      data: result.data || [],
+      status: response.status
     };
   },
 
   // Get event by ID
   async getEventById(id) {
-    await delay(300);
-    const event = eventsData.find(event => event.id === parseInt(id));
-    if (event) {
-      return {
-        data: event,
-        status: 200
-      };
-    }
-    throw new Error('Event not found');
+    const token = localStorage.getItem('tickethub_token');
+    const response = await fetch(`http://127.0.0.1:5000/api/events/${id}`, {
+      method: 'GET',
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    });
+    const result = await response.json();
+    return {
+      data: result.data || null,
+      status: response.status
+    };
   },
 
   // Search events by category or name
   async searchEvents(query) {
-    await delay(400);
-    const filteredEvents = eventsData.filter(event => 
-      event.name.toLowerCase().includes(query.toLowerCase()) ||
-      event.category.toLowerCase().includes(query.toLowerCase()) ||
-      event.location.toLowerCase().includes(query.toLowerCase())
-    );
+    const token = localStorage.getItem('tickethub_token');
+    const response = await fetch(`http://127.0.0.1:5000/api/events?search=${encodeURIComponent(query)}`, {
+      method: 'GET',
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    });
+    const result = await response.json();
     return {
-      data: filteredEvents,
-      status: 200
+      data: result.data || [],
+      status: response.status
     };
   }
 };
